@@ -14,9 +14,16 @@ return new class extends Migration
         Schema::create('addactivity', function (Blueprint $table) {
             $table->id();
             $table->string('activityname');
-            $table->integer('activitydays');
+            $table->time('TImorningStartTime');
+            $table->time('TImorningEndTime');
+            $table->time('TOmorningStartTime');
+            $table->time('TOmorningEndTime');
+            $table->time('noonStartTime');
+            $table->time('noonEndTime');
+            $table->time('afternoonStartTime');
+            $table->time('afternoonEndTime');
             $table->timestamps();
-        });
+        }); 
     }
 
     /**

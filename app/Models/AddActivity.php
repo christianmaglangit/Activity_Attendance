@@ -9,5 +9,15 @@ class AddActivity extends Model
 {
     use HasFactory;
     protected $table = 'addactivity';
-    protected $fillable = ['activityname', 'activitydays'];
+    protected $fillable = [
+        'activityname',
+        'TImorningStartTime',
+        'TImorningEndTime',
+        'TOmorningStartTime',
+        'TOmorningEndTime',
+        'noonStartTime',
+        'noonEndTime',
+        'afternoonStartTime',
+        'afternoonEndTime'
+    ];
 }

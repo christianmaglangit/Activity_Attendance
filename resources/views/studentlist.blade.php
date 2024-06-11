@@ -65,7 +65,7 @@
             </thead>
             <tbody>
                 @foreach($studentlist as $student)
-                <tr class="year-level-{{ $student->yearlevel }}">
+                <tr ">
                     <td>{{$student->idnumber}}</td>
                     <td>{{$student->name}}</td>
                     <td>{{$student->course}}</td>

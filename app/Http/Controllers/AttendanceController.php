@@ -31,27 +31,25 @@ class AttendanceController extends Controller
 
     // Get activity information
     $activity = AddActivity::where('activityname', $activityName)->first();
-    $activitydays = $activity ? $activity->activitydays : null;
+    $TImorningStartTime = $activity ? $activity->TImorningStartTime : null;;
+    $TImorningEndTime = $activity ? $activity->TImorningEndTime : null;;
+    $TOmorningStartTime = $activity ? $activity->TOmorningStartTime : null;;
+    $TOmorningEndTime = $activity ? $activity->TOmorningEndTime : null;;
+    $noonStartTime = $activity ? $activity->noonStartTime : null;;
+    $noonEndTime = $activity ? $activity->noonEndTime : null;;
+    $afternoonStartTime = $activity ? $activity->afternoonStartTime : null;;
+    $afternoonEndTime = $activity ? $activity->afternoonEndTime : null;;
 
 
     // Convert the time from AM/PM format to 24-hour format
     $realTimeFormatted = date("H:i:s", strtotime($realTime));
 
     // Sample time ranges
-    $TImorningStartTime = $request->input('TImorningStartTime');
-    $TImorningEndTime = $request->input('TImorningEndTime');
-    $TOmorningStartTime = $request->input('TOmorningStartTime');
-    $TOmorningEndTime = $request->input('TOmorningEndTime');
-    $noonStartTime = $request->input('noonStartTime');
-    $noonEndTime = $request->input('noonEndTime');
-    $afternoonStartTime = $request->input('afternoonStartTime');
-    $afternoonEndTime = $request->input('afternoonEndTime');
-
+    
     // Initialize data array for updateOrCreate
 
 
 // Add the time-related data to the $data array
-// Initialize data array for updateOrCreate
 // Initialize data array for updateOrCreate
 $data = [
     'idnumber' => $studentInfo->idnumber,
@@ -62,43 +60,38 @@ $data = [
     'updated_at' => now()
 ];
 
-// Add the time-related data to the $data array
-// Loop through each day of the activity
-for ($day = 1; $day <= $activitydays; $day++) {
-    $dayColumnNamePrefix = "$day"; // Prefix para sa pangalan ng kolumna para sa bawat araw
-
     // Determine the category based on the time range
     if ($realTimeFormatted >= $TImorningStartTime && $realTimeFormatted < $TImorningEndTime) {
         // Check if the column already has a value
-        if (!empty($studentInfo["TIMorning_$dayColumnNamePrefix"])) {
+        if (!empty($studentInfo["TIMorning"])) {
             // If the column has a value, return an error message
             return redirect()->back()->with('warning', 'You Already TimeIn/TimeOut in this time and day range');
         } else {
             // If the column doesn't have a value, update it
-            $data["TIMorning_$dayColumnNamePrefix"] = $realTimeFormatted;
+            $data["TIMorning"] = $realTimeFormatted;
         }
     } elseif ($realTimeFormatted >= $TOmorningStartTime && $realTimeFormatted <= $TOmorningEndTime) {
-        if (!empty($studentInfo["TOMorning_$dayColumnNamePrefix"])) {
+        if (!empty($studentInfo["TOMorning"])) {
             return redirect()->back()->with('warning', 'You Already TimeIn/TimeOut in this time and day range');
         } else {
-            $data["TOMorning_$dayColumnNamePrefix"] = $realTimeFormatted;
+            $data["TOMorning"] = $realTimeFormatted;
         }
     } elseif ($realTimeFormatted >= $noonStartTime && $realTimeFormatted < $noonEndTime) {
-        if (!empty($studentInfo["TINoon_$dayColumnNamePrefix"])) {
+        if (!empty($studentInfo["TINoon"])) {
             return redirect()->back()->with('warning', 'You Already TimeIn/TimeOut in this time and day range');
         } else {
-            $data["TINoon_$dayColumnNamePrefix"] = $realTimeFormatted;
+            $data["TINoon"] = $realTimeFormatted;
         }
     } elseif ($realTimeFormatted >= $afternoonStartTime && $realTimeFormatted < $afternoonEndTime) {
-        if (!empty($studentInfo["TONoon_$dayColumnNamePrefix"])) {
+        if (!empty($studentInfo["TONoon"])) {
             return redirect()->back()->with('warning', 'You Already TimeIn/TimeOut in this time and day range');
         } else {
-            $data["TONoon_$dayColumnNamePrefix"] = $realTimeFormatted;
+            $data["TONoon"] = $realTimeFormatted;
         }
     } else {
         return redirect()->back()->with('warning', 'Time in time out not time');
     }
-}
+
 
 
 // Update or insert the record in the database

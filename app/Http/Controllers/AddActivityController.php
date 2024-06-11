@@ -19,39 +19,54 @@ class AddActivityController extends Controller
     {
         $request->validate([
             'activityname' => 'required|string|max:255',
-            'activitydays' => 'required|integer|min:1', // Ensure 'days' is an integer greater than or equal to 1
+            'TImorningStartTime' => 'required', 
+            'TImorningEndTime' => 'required',
+            'TOmorningStartTime' => 'required', 
+            'TOmorningEndTime' => 'required',
+            'noonStartTime' => 'required', 
+            'noonEndTime' => 'required',
+            'afternoonStartTime' => 'required', 
+            'afternoonEndTime' => 'required',
         ]);
 
         // Get the activity name and number of days from the form
         $activityname = $request->input('activityname');
-        $activitydays = $request->input('activitydays');
-
+        $TImorningStartTime = $request->input('TImorningStartTime');
+        $TImorningEndTime = $request->input('TImorningEndTime');
+        $TOmorningStartTime = $request->input('TOmorningStartTime');
+        $TOmorningEndTime = $request->input('TOmorningEndTime');
+        $noonStartTime = $request->input('noonStartTime');
+        $noonEndTime = $request->input('noonEndTime');
+        $afternoonStartTime = $request->input('afternoonStartTime');
+        $afternoonEndTime = $request->input('afternoonEndTime');
 
 
         // Create a table if it doesn't exist
         if (!Schema::hasTable($activityname)) {
-            Schema::create($activityname, function ($table) use ($activitydays) {
+            Schema::create($activityname, function ($table) {
                 $table->id();
                 $table->string('idnumber');
                 $table->string('name');
                 $table->string('yearlevel');
                 $table->string('course');
-
-                // Add time-related fields for each day
-                for ($i = 1; $i <= $activitydays; $i++) {
-                    $table->time("TIMorning_$i")->nullable();
-                    $table->time("TOMorning_$i")->nullable();
-                    $table->time("TINoon_$i")->nullable();
-                    $table->time("TONoon_$i")->nullable();
-                }
-
+                $table->time("TIMorning")->nullable();
+                $table->time("TOMorning")->nullable();
+                $table->time("TINoon")->nullable();
+                $table->time("TONoon")->nullable();
                 $table->timestamps();
             });
             Artisan::call('migrate', ['--force' => true]);
             // Store the activity information in the database
             addactivity::create([
                 'activityname' => $activityname,
-                'activitydays' => $activitydays,
+                'TImorningStartTime' => $TImorningStartTime,
+                'TImorningEndTime' => $TImorningEndTime,
+                'TOmorningStartTime' => $TOmorningStartTime,
+                'TOmorningEndTime' => $TOmorningEndTime,
+                'noonStartTime' => $noonStartTime,
+                'noonEndTime' => $noonEndTime,
+                'afternoonStartTime' => $afternoonStartTime,
+                'afternoonEndTime' => $afternoonEndTime,
             ]);
             // Convert table name to CamelCase
             $modelClassName = Str::studly(str_replace(' ', '', $activityname));

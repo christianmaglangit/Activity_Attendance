@@ -40,12 +40,19 @@
         @csrf
         <label>Add Activity for Attendance</label>
         <input type="text" name="activityname" placeholder="Activity Name"><br><br>
-        <input type="number" name="activitydays" placeholder="Days of Activity"><br><br>
+        <input type="time" name="TImorningStartTime" placeholder="Time In Morning Start"><br><br>
+        <input type="time" name="TImorningEndTime" placeholder="Time In Morning End"><br><br>
+        <input type="time" name="TOmorningStartTime" placeholder="Time Out Morning Start"><br><br>
+        <input type="time" name="TOmorningEndTime" placeholder="Time Out Morning End"><br><br>
+        <input type="time" name="noonStartTime" placeholder="Time In Afternoon Start"><br><br>
+        <input type="time" name="noonEndTime" placeholder="Time In Afternoon End"><br><br>
+        <input type="time" name="afternoonStartTime" placeholder="Time Out Afternoon Start"><br><br>
+        <input type="time" name="afternoonEndTime" placeholder="Time Out Afternoon End"><br><br>
         <button type="submit">Add Activity</button>
     </form>
 
     </div>
-    <footer>All rights not reserved - Christian Maglangit </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Check for success message and display SweetAlert -->
     <script>
