@@ -57,67 +57,16 @@ nav {
     border-bottom: 2px solid white;
     border-radius: 5px;
 }
-
-/* nav ends here */
-.form {
-    margin-top: 31px;
-    border-radius: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #b9ecb9;
 }
-form {
-    width: 400px;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: 5px solid #0c8833;
-    border-radius: 15px;
+.tableclass {
+    height: 500px;
+    overflow: auto;
+    margin-top: 10px;
 }
-form label {
-    color: black;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-form h1 {
-    font-size: 30px;
-    font-weight: bold;
-    color: black;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-form input {
-    width: 300px;
-    height: 30px;
-    padding: 5px;
-    padding-left: 10px;
-    border-radius: 10px;
-    font-size: larger;
-    border: 2px solid green;
-    margin: 10px;
-    text-transform: uppercase;
-}
-form button {
-    width: 200px;
-    height: 30px;
-    margin: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 20px;
-    border: 2px solid green;
-    color: white;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-form button:hover {
-    background-color: green;
-    color: white;
-    border: 3px solid rgb(132, 233, 132);
+.dbname {
+    font-weight: 700;
 }
 footer {
     display: flex;
@@ -128,6 +77,6 @@ footer {
     height: 30px;
     font-size: 12px;
     text-transform: uppercase;
-    margin-top: 4rem;
+    margin-top: 3px;
     letter-spacing: 3px;
 }

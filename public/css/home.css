@@ -3,7 +3,7 @@
     margin: 0;
 }
 body {
-    background-color: #d0f7d3;
+    background-color: #ffffff;
     font-family: "Montserrat", sans-serif;
 }
 #mainlogo {
@@ -36,41 +36,46 @@ nav {
     font-weight: bold;
     text-transform: uppercase;
 }
-.link a {
+#navbarNav a {
     text-decoration: none;
-    color: rgb(213, 247, 215);
+    color: rgb(255, 255, 255);
     font-size: 13px;
     text-transform: uppercase;
     padding: 10px;
 }
-.link a:hover {
-    background-color: rgb(96, 219, 107);
-    color: rgb(13, 29, 6);
+#navbarNav #logout {
+    background-color: #d0f7d3;
+    color: #0c8833;
+    border-radius: 13px;
+}
+
+#navbarNav a:hover {
+    border-bottom: 2px solid white;
     border-radius: 5px;
 }
-.link a:active {
-    background-color: rgb(96, 219, 107);
-    color: rgb(13, 29, 6);
+
+.nav-link.active {
+    border-bottom: 2px solid white;
     border-radius: 5px;
 }
-.link {
-    display: flex;
-    gap: 10px;
-    padding-left: 12rem;
-}
-.form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-form {
-    width: 400px;
-    height: 500px;
-    background-color: transparent;
+
+#idform {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+    width: 400px;
+    height: 500px;
+    border-radius: 15px;
+    border: 5px solid #0c8833;
+}
+.containerform {
     margin-top: 41px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 form label {
     font-size: 40px;
@@ -86,9 +91,9 @@ form input {
     margin: 5px;
     padding: 5px;
     padding-left: 10px;
-    border-radius: 5px;
     font-size: larger;
     border: 2px solid green;
+    border-radius: 10px;
 }
 
 form button {
@@ -125,4 +130,6 @@ footer {
     height: 30px;
     font-size: 12px;
     text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 56px;
 }

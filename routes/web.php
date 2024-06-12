@@ -20,18 +20,17 @@ use App\Http\Controllers\StudentListAAController;
 |
 */
 //
-Route::get('/', function () {
-    return view('login');
-});
-Route::post('/', [loginController::class, 'loginPost'])->name('login');
-//
+Route::get('/', [loginController::class, 'login'])->name('login');
+Route::post('/', [loginController::class, 'loginPost'])->name('loginPost');
 
+//register
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'registerPost'])->name('register');
-//
-Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
+//register end
 
-//
+//logout
+Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
+//logout end
 
 //for display student list
 Route::get('/studentlist', [AddStudentController::class, 'studentlist'])->name('studentlist');
@@ -39,8 +38,8 @@ Route::get('/studentlist', [AddStudentController::class, 'studentlist'])->name('
 
 
 //for display student activity attendance
-Route::get('/studentlistAA', [StudentListAAController::class, 'studentlistAA'])->name('studentlistAA');
-Route::get('/studentlistAA', [StudentListAAController::class, 'getActivityNames'])->name('getActivityNames');
+
+Route::get('/studentlistAA', [StudentListAAController::class, 'getTableData'])->name('getTableData');
 Route::post('/studentlistAA', [StudentListAAController::class, 'getTableData'])->name('getTableData');
 
 

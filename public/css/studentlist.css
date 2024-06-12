@@ -3,7 +3,7 @@
     margin: 0;
 }
 body {
-    background-color: #abf7b1;
+    background-color: #ffffff;
     font-family: "Montserrat", sans-serif;
 }
 #mainlogo {
@@ -36,28 +36,36 @@ nav {
     font-weight: bold;
     text-transform: uppercase;
 }
-.link a {
+#navbarNav a {
     text-decoration: none;
-    color: rgb(213, 247, 215);
+    color: rgb(255, 255, 255);
     font-size: 13px;
     text-transform: uppercase;
     padding: 10px;
 }
-.link a:hover {
-    background-color: rgb(96, 219, 107);
-    color: rgb(13, 29, 6);
+#navbarNav #logout {
+    background-color: #d0f7d3;
+    color: #0c8833;
+    border-radius: 13px;
+}
+#navbarNav a:hover {
+    border-bottom: 2px solid white;
     border-radius: 5px;
 }
-.link a:active {
-    background-color: rgb(96, 219, 107);
-    color: rgb(13, 29, 6);
+
+.nav-link.active {
+    border-bottom: 2px solid white;
     border-radius: 5px;
 }
-.link {
-    display: flex;
-    gap: 10px;
-    padding-left: 12rem;
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #b9ecb9;
 }
+.tableclass {
+    height: 500px;
+    overflow: auto;
+    margin-top: 10px;
+}
+
 footer {
     display: flex;
     justify-content: center;
@@ -67,4 +75,6 @@ footer {
     height: 30px;
     font-size: 12px;
     text-transform: uppercase;
+    margin-top: 3px;
+    letter-spacing: 3px;
 }

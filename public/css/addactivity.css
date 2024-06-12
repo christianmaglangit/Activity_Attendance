@@ -3,10 +3,9 @@
     margin: 0;
 }
 body {
-    background-color: #abf7b1;
+    background-color: #ffffff;
     font-family: "Montserrat", sans-serif;
 }
-/* nav starts here */
 #mainlogo {
     width: 70px;
     height: 70px;
@@ -37,68 +36,103 @@ nav {
     font-weight: bold;
     text-transform: uppercase;
 }
-.link a {
+#navbarNav a {
     text-decoration: none;
-    color: rgb(213, 247, 215);
+    color: rgb(255, 255, 255);
     font-size: 13px;
     text-transform: uppercase;
     padding: 10px;
 }
-.link a:hover {
-    background-color: rgb(96, 219, 107);
-    color: rgb(13, 29, 6);
+#navbarNav #logout {
+    background-color: #d0f7d3;
+    color: #0c8833;
+    border-radius: 13px;
+}
+#navbarNav a:hover {
+    border-bottom: 2px solid white;
     border-radius: 5px;
 }
-.link a:active {
-    background-color: rgb(96, 219, 107);
-    color: rgb(13, 29, 6);
+
+.nav-link.active {
+    border-bottom: 2px solid white;
     border-radius: 5px;
 }
-.link {
+.form {
     display: flex;
-    gap: 10px;
-    padding-left: 12rem;
+    justify-content: center;
+    align-items: center;
 }
 form {
-    width: 100%;
-    height: 500px;
+    width: 450px;
     background-color: transparent;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin-top: 10px;
+    border: 5px solid #0c8833;
+    border-radius: 10px;
 }
-form label {
-    font-size: 40px;
+form .title {
+    font-size: 30px;
     font-weight: bold;
     color: black;
     text-transform: uppercase;
     letter-spacing: 1px;
-    padding: 20px 0px 20px 0px;
 }
 form input {
     width: 300px;
-    height: 40px;
-    padding: 5px;
+    height: 30px;
     padding-left: 10px;
     border-radius: 5px;
     font-size: larger;
     border: 2px solid green;
-    margin: -5px;
+    border-radius: 10px;
+    margin: 10px;
     text-transform: uppercase;
 }
+form .timetitle {
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form .time {
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid black;
+    margin-bottom: 30px;
+}
+form .time1 {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+form .timefield {
+    width: 150px;
+}
+form .timorning {
+    display: flex;
+}
+form .startendtime {
+    display: flex;
+    flex-direction: column;
+}
 form button {
-    width: 300px;
-    height: 40px;
-    margin: 5px;
+    width: 200px;
+    height: 30px;
     padding: 5px;
     border-radius: 5px;
-    font-size: larger;
+    font-size: large;
     border: 2px solid green;
     background-color: green;
     color: white;
     font-weight: bold;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 form button:hover {
     background-color: green;
@@ -114,5 +148,6 @@ footer {
     height: 30px;
     font-size: 12px;
     text-transform: uppercase;
-    margin-top: 31px;
+    margin-top: 20px;
+    letter-spacing: 3px;
 }
