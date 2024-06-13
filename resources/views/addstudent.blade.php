@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/bootstrapcss/bootstrap.min.css" />
     <link rel="stylesheet" href="css/addstudent.css">
     <link rel="icon" href="images/ccs.png">
     <title>College of Computer Studies</title>
@@ -56,7 +56,7 @@
         </form>
     </div>
     <footer>Developer - Christian maglangit - Developer</footer>
-
+    <script src="javascript/bootstrapjs/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function checkSuccessMessage() {

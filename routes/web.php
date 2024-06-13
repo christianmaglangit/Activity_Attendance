@@ -8,6 +8,7 @@ use App\Http\Controllers\AddActivityController;
 use App\Http\Controllers\AddStudentController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\StudentListAAController;
+use App\Http\Controllers\StudentPenaltyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,12 +39,8 @@ Route::get('/studentlist', [AddStudentController::class, 'studentlist'])->name('
 
 
 //for display student activity attendance
-
 Route::get('/studentlistAA', [StudentListAAController::class, 'getTableData'])->name('getTableData');
 Route::post('/studentlistAA', [StudentListAAController::class, 'getTableData'])->name('getTableData');
-
-
-
 //end for display student activity attendance
 
 //add Student route
@@ -60,3 +57,6 @@ Route::post('/addactivity', [AddActivityController::class, 'addactivityPost'])->
 Route::get('/home', [AddActivityController::class, 'showActivityFormHome'])->name('home');
 Route::post('/home', [AttendanceController::class, 'attendancePost'])->name('attendancePost');
 
+//student penalty route
+Route::get('/studentpenalty', [StudentPenaltyController::class, 'studentpenalty'])->name('studentpenalty');
+Route::get('/studentpenalty', [StudentPenaltyController::class, 'getTableName'])->name('getTableName');

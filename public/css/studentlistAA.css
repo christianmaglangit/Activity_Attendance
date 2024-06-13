@@ -3,7 +3,7 @@
     margin: 0;
 }
 body {
-    background-color: #ffffff;
+    background-color: #d0f7d3;
     font-family: "Montserrat", sans-serif;
 }
 #mainlogo {
@@ -17,24 +17,10 @@ nav {
     background-color: #0c8833;
     padding-top: 5px;
 }
-.logo-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: rgb(213, 247, 215);
-    margin-left: 10px;
-    align-items: center;
-    display: flex;
-    text-transform: uppercase;
-    list-style: none;
-    gap: 30px;
-    padding-left: 50px;
-}
-.logo-title a {
-    text-decoration: none;
-    color: rgb(213, 247, 215);
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
+.navbar-brand {
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 2px;
 }
 #navbarNav a {
     text-decoration: none;
@@ -52,30 +38,40 @@ nav {
     border-bottom: 2px solid white;
     border-radius: 5px;
 }
-
 .nav-link.active {
     border-bottom: 2px solid white;
     border-radius: 5px;
 }
+#activityname {
+    width: 200px;
+}
+.content {
+    height: 548px;
+}
+.addstudent {
+    width: 25px;
+    height: 25px;
+}
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #b9ecb9;
+    background-color: #d0f7d3;
 }
 .tableclass {
-    height: 500px;
+    height: 490px;
     overflow: auto;
     margin-top: 10px;
 }
 .dbname {
     font-weight: 700;
+    margin-left: 20px;
 }
 footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0c8833;
     color: white;
     height: 30px;
-    font-size: 12px;
+    font-size: 15px;
+    font-weight: 600;
     text-transform: uppercase;
     margin-top: 3px;
     letter-spacing: 3px;

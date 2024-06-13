@@ -29,7 +29,7 @@ class AddStudentController extends Controller
     }
     public function studentlist()
     {
-        $studentlist = Addstudent::orderBy('idnumber')->get();
+        $studentlist = Addstudent::orderBy('name')->get();
         return view('studentlist',[
             'studentlist' => $studentlist
         ]);

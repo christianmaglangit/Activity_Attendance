@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/bootstrapcss/bootstrap.min.css" />
     <link rel="stylesheet" href="css/studentlistAA.css">
     <link rel="icon" href="images/ccs.png">
     <title>College of Computer Studies</title>
@@ -20,37 +20,31 @@
                         <a class="nav-link {{ Request::is('home') ? 'active' : '' }}" href="{{route('home')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('addstudent') ? 'active' : '' }}" href="{{route('addstudent')}}">Add Student</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('addactivity') ? 'active' : '' }}" href="{{route('addactivity')}}">Add Activity</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {{ Request::is('studentlist') ? 'active' : '' }}" href="{{route('studentlist')}}">Student List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('getTableData') ? 'active' : '' }}" href="{{route('getTableData')}}">Activity Student List</a>
+                        <a class="nav-link {{ Request::is('getTableData') ? 'active' : '' }}" href="{{route('getTableData')}}">Activity Attendance</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}" id="logout" href="{{route('logout')}}">Logout</a>
+                    <li class="nav-item ps-2">
+                        <a class="nav-link {{ Request::is('logout') ? 'active' : '' }} disabled" id="logout" href="{{route('logout')}}">Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <h2 class="w-1oo d-flex justify-content-center">College of Computer Studies - Activity Attendance</h2>
-   
+    <div class="content">
         @if (isset($activityNames))
         <div class="d-flex justify-content-around">
-            <form class="d-flex" id="activityForm" action="{{ route('getTableData') }}" method="POST">
+            <form class="d-flex gap-2" id="activityForm" action="{{ route('getTableData') }}" method="POST">
                 @csrf
                 <label for="activityname" class="d-flex justify-conten-center align-items-center" >Select Activity</label>
-                <select class="form-control w-50" id="activityname" name="activityname" onchange="this.form.submit()">
-    <option value="" selected disabled>Select an activity</option>
-    @foreach($activityNames as $id => $name)
-        <option value="{{ $name }}">{{ $name }}</option>
-    @endforeach
-</select>
+                <select class="form-control" id="activityname" name="activityname" onchange="this.form.submit()">
+                    <option value="" selected disabled>Select an activity</option>
+                    @foreach($activityNames as $id => $name)
+                        <option value="{{ $name }}">{{ $name }}</option>
+                    @endforeach
+                </select>
             </form>
             <div class="d-flex justify-conten-center align-items-center">Student Total Number : <span id="rowCount">0</span></div>
             <div class="searchengine d-flex justify-conten-center align-items-center" >
@@ -60,44 +54,123 @@
                 </form>
             </div>
         </div>
+        <div class="d-flex justify-content-center align-items-center">
+        <button type="button" class="btn btn-success ms-3" data-toggle="modal" data-target="#addActivity">
+                <img class="addstudent " src="images/addstudent.png" alt="Add Student">
+                Add Activity
+            </button>
+        </div>
         @endif
         
 
-    @if (isset($tableData))
-    <div class="tableclass">
-        <div class="tableclass1">
-        @if (!empty($selectedName))
-            <h2 class="dbname d-flex justify-content-center align-items-center">{{ strtoupper($selectedName) }}</h2>
-        @endif
-        @if (!empty($tableData))
-            <table id="studentTable" class="container table table-striped table-bordered table-hover">
-                <thead class="tableHead">
-                    <tr>
-                        @foreach ($tableData->first() as $columnName => $value)
-                            @if (!in_array($columnName, $columnsToExclude))
-                                <th>{{ strtoupper($columnName) }}</th>
-                            @endif
-                        @endforeach
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($tableData as $rowData)
+        @if (isset($tableData))
+        <div class="tableclass">
+            <div class="tableclass1">
+            @if (!empty($selectedName))
+                <h4 class="dbname d-flex justify-content-center align-items-center">{{ strtoupper($selectedName) }}</h4>
+            @endif
+            @if (!empty($tableData))
+                <table id="studentTable" class="container table table-striped table-bordered table-hover">
+                    <thead class="tableHead">
                         <tr>
-                            @foreach ($rowData as $value)
-                                <td>{{ strtoupper($value) }}</td>
+                            @foreach ($tableData->first() as $columnName => $value)
+                                @if (!in_array($columnName, $columnsToExclude))
+                                    <th class="bg-success text-light">{{ strtoupper($columnName) }}</th>
+                                @endif
                             @endforeach
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @else
-            <p>No data available for the selected activity.</p>
+                    </thead>
+                    <tbody>
+                        @foreach ($tableData as $rowData)
+                            <tr>
+                                @foreach ($rowData as $value)
+                                    <td>{{ strtoupper($value) }}</td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p>No data available for the selected activity.</p>
+            @endif
+            </div>
+        </div>   
         @endif
+    </div>
+
+    <!-- modal add activity -->
+    <div class="modal fade" id="addActivity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Activity</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Your form goes here -->
+                    <form method="POST" action="{{ route('addactivityPost') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label title">Activity Name</label>
+                            <input type="text" name="activityname" class="form-control" placeholder="Activity Name">
+                        </div>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-label timetitle">Time In Morning Start</label>
+                                    <input class="form-control timefield" type="time" name="TImorningStartTime" placeholder="Time In Morning Start">
+                                </div>
+                                <div class="col">
+                                    <label class="form-label timetitle">Time In Morning End</label>
+                                    <input class="form-control timefield" type="time" name="TImorningEndTime" placeholder="Time In Morning End">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-label timetitle">Time Out Morning Start</label>
+                                    <input class="form-control timefield" type="time" name="TOmorningStartTime" placeholder="Time Out Morning Start">
+                                </div>
+                                <div class="col">
+                                    <label class="form-label timetitle">Time Out Morning End</label>
+                                    <input class="form-control timefield" type="time" name="TOmorningEndTime" placeholder="Time Out Morning End">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-label timetitle">Time In Afternoon Start</label>
+                                    <input class="form-control timefield" type="time" name="noonStartTime" placeholder="Time In Afternoon Start">
+                                </div>
+                                <div class="col">
+                                    <label class="form-label timetitle">Time In Afternoon End</label>
+                                    <input class="form-control timefield" type="time" name="noonEndTime" placeholder="Time In Afternoon End">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="form-label timetitle">Time Out Afternoon Start</label>
+                                    <input class="form-control timefield" type="time" name="afternoonStartTime" placeholder="Time Out Afternoon Start">
+                                </div>
+                                <div class="col">
+                                    <label class="form-label timetitle">Time Out Afternoon End</label>
+                                    <input class="form-control timefield" type="time" name="afternoonEndTime" placeholder="Time Out Afternoon End">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">Add Activity</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-    <footer>Developer - Christian maglangit - Developer</footer>
-@endif
-
+    <footer class="bg-success">Developer - Christian bolohan maglangit - Developer</footer>
+    <script src="javascript/bootstrapjs/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
         var searchInput = document.getElementById('searchInput');
@@ -152,6 +225,59 @@
             
             updateRowCount();
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+        var button = document.querySelector('.btn-success');
+        var modal = document.getElementById('addActivity');
+            button.addEventListener('click', function () {
+                modal.classList.add('show');
+                modal.style.display = 'block'; 
+                document.body.classList.add('modal-open');
+                var backdrop = document.createElement('div');
+                backdrop.classList.add('modal-backdrop', 'fade', 'show');
+                document.body.appendChild(backdrop);
+            });
+            var closeButton = modal.querySelector('.btn-close');
+            closeButton.addEventListener('click', function () {
+                modal.classList.remove('show');
+                modal.style.display = 'none'; 
+                document.body.classList.remove('modal-open');
+                var backdrop = document.querySelector('.modal-backdrop');
+                backdrop.parentNode.removeChild(backdrop);
+            });
+        });
+        function checkSuccessMessage() {
+            // Get the success message from the page
+            const successMessage = '{{ session('success') }}';
+            // If success message exists, display SweetAlert
+            if (successMessage) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: successMessage,
+                    timer: 2500,
+                    showConfirmButton: false,
+                });
+            }
+        }
+        // Call the function when the page loads
+        checkSuccessMessage();
+        function checkWarningMessage() {
+            // Get the success message from the page
+            const warningMessage = '{{ session('warning') }}';
+            // If success message exists, display SweetAlert
+            if (warningMessage) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'warning!',
+                    text: warningMessage,
+                    timer: 2500,
+                    showConfirmButton: false,
+                });
+            }
+        }
+        // Call the function when the page loads
+        checkWarningMessage();
         
     </script>
 </body>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/bootstrapcss/bootstrap.min.css" />
     <link rel="stylesheet" href="css/home.css">
     <link rel="icon" href="images/ccs.png">
     <title>College of Computer Studies</title>
@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success w-100">
         <div class="container-fluid d-flex">
-            <a class="navbar-brand" href="{{route('home')}}"><img id="mainlogo" src="images/ccs.png"></a>
+            <a class="navbar-brand" href="{{route('home')}}"><img id="mainlogo" src="images/ccs.png" alt="CCS"></a>
             <a class="navbar-brand" href="{{route('home')}}">College of Computer Studies</a>  
             <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
@@ -20,19 +20,13 @@
                         <a class="nav-link {{ Request::is('home') ? 'active' : '' }}" href="{{route('home')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('addstudent') ? 'active' : '' }}" href="{{route('addstudent')}}">Add Student</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('addactivity') ? 'active' : '' }}" href="{{route('addactivity')}}">Add Activity</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {{ Request::is('studentlist') ? 'active' : '' }}" href="{{route('studentlist')}}">Student List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('getTableData') ? 'active' : '' }}" href="{{route('getTableData')}}">Activity Student List</a>
+                        <a class="nav-link {{ Request::is('getTableData') ? 'active' : '' }}" href="{{route('getTableData')}}">Activity Attendance</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}" id="logout" href="{{route('logout')}}">Logout</a>
+                    <li class="nav-item ps-2">
+                        <a class="nav-link {{ Request::is('logout') ? 'active' : '' }} disabled" id="logout" href="{{route('logout')}}">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -55,7 +49,9 @@
             <h3 id="realdate"></h3>
         </form>
     </div>
-<footer>Developer - Christian maglangit - Developer</footer>
+    <footer class="bg-success"> Developer - Christian bolohan maglangit - Developer</footer>
+    <script src="js/bootstrapjs/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("idInput").focus();
@@ -79,6 +75,7 @@
         // Function to validate the form before submission
         
     </script>
+    <script src="javascript/bootstrapjs/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Check for success message and display SweetAlert -->
     <script>
