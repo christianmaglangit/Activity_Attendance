@@ -37,7 +37,7 @@
         <div class="selection d-flex gap-2">
             <label for="yearlevel" class="d-flex justify-conten-center align-items-center">Year level</label>
             <select class="form-control" style="font-size:15px; width:200px;" id="year" name="year">
-                <option value="all" ||>All Year Levels</option>
+                <option value="all" selected>All Year Levels</option>
                 <option value="1ST YEAR">1st year</option>
                 <option value="2ND YEAR">2nd year</option>
                 <option value="3RD YEAR">3rd year</option>

@@ -40,7 +40,7 @@
                 @csrf
                 <label for="activityname" class="d-flex justify-conten-center align-items-center" >Select Activity</label>
                 <select class="form-control" id="activityname" name="activityname" onchange="this.form.submit()">
-                    <option value="" selected disabled>Select an activity</option>
+                    <option value="" selected>Select an activity</option>
                     @foreach($activityNames as $id => $name)
                         <option value="{{ $name }}">{{ $name }}</option>
                     @endforeach
