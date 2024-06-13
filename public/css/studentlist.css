@@ -56,7 +56,12 @@ nav {
     overflow: auto;
     margin-top: 19px;
 }
-#editForm input {
+#editForm input,
+label {
+    text-transform: uppercase;
+}
+#addStudentModal label,
+input {
     text-transform: uppercase;
 }
 footer {

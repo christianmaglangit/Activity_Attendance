@@ -110,12 +110,12 @@
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name:</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ $student->name }}">
-                        </div>
-                        <div class="mb-3">
                             <label for="idnumber" class="form-label">ID Number:</label>
                             <input type="text" class="form-control" id="idnumber" name="idnumber" value="{{ $student->idnumber }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ $student->name }}">
                         </div>
                         <div class="mb-3">
                             <label for="course" class="form-label">Course:</label>
@@ -150,24 +150,24 @@
                     <form action="{{route('addstudent')}}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">ex: Lastname, Firstname M.</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Fullname" required>
+                            <label for="name" class="form-label">Fullname</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="ex: John d. doe" required>
                         </div>
                         <div class="mb-3">
-                            <label for="idnumber" class="form-label">ex: 00-0000 / 0000-0000</label>
-                            <input type="text" name="idnumber" id="idnumber" class="form-control" placeholder="ID - Number" required>
+                            <label for="idnumber" class="form-label">ID - Number</label>
+                            <input type="text" name="idnumber" id="idnumber" class="form-control" placeholder="ex: 00-0000 / 0000-0000 " required>
                         </div>
                         <div class="mb-3">
-                            <label for="course" class="form-label">ex: BSIT</label>
-                            <input type="text" name="course" id="course" class="form-control" placeholder="Course" required>
+                            <label for="course" class="form-label">Course</label>
+                            <input type="text" name="course" id="course" class="form-control" placeholder=" ex: BSIT" required>
                         </div>
                         <div class="mb-3">
-                            <label for="yearlevel" class="form-label">ex: 1st year</label>
-                            <input type="text" name="yearlevel" id="yearlevel" class="form-control" placeholder="Year Level" required>
+                            <label for="yearlevel" class="form-label">Year Level</label>
+                            <input type="text" name="yearlevel" id="yearlevel" class="form-control" placeholder="ex: 1st year " required>
                         </div>
                         <div class="mb-3">
-                            <label for="collegedep" class="form-label">ex: ccs</label>
-                            <input type="text" name="collegedep" id="collegedep" class="form-control" placeholder="Department" required>
+                            <label for="collegedep" class="form-label">Department</label>
+                            <input type="text" name="collegedep" id="collegedep" class="form-control" placeholder=" ex: ccs" required>
                         </div>
                         <button type="submit" class="btn btn-success">Add Student</button>
                     </form>
