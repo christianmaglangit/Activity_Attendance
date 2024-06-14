@@ -5,6 +5,7 @@
 body {
     background-color: #d0f7d3;
     font-family: "Montserrat", sans-serif;
+    height: 100vh;
 }
 #mainlogo {
     width: 70px;

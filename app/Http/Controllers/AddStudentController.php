@@ -30,7 +30,7 @@ class AddStudentController extends Controller
         $addstudent->account_id = $loggedInUserId; // Assign the ID of the logged-in user as the account_id
 
         $addstudent->save();
-        return redirect()->back()->with('success', "Student Add Success");
+        return redirect()->back()->with('addsuccess', "Student Add Success");
     }
 
     // Modify your studentlist method to fetch students associated with the logged-in account
