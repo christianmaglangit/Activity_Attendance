@@ -17,6 +17,7 @@ class Addstudent extends Model
         'course',
         'yearlevel',
         'collegedep',
+        'account_id',
     ];
 }
 

@@ -17,6 +17,7 @@ class AddActivityController extends Controller
     }
     public function addactivityPost(Request $request)
     {
+        $loggedInUserId = auth()->user()->id;
         $request->validate([
             'activityname' => 'required|string|max:255',
             'TImorningStartTime' => 'required', 
@@ -53,6 +54,7 @@ class AddActivityController extends Controller
                 $table->time("TOMorning")->nullable();
                 $table->time("TINoon")->nullable();
                 $table->time("TONoon")->nullable();
+                $table->string("account_id");
                 $table->timestamps();
             });
             Artisan::call('migrate', ['--force' => true]);
@@ -67,6 +69,7 @@ class AddActivityController extends Controller
                 'noonEndTime' => $noonEndTime,
                 'afternoonStartTime' => $afternoonStartTime,
                 'afternoonEndTime' => $afternoonEndTime,
+                'account_id' => $loggedInUserId,
             ]);
             // Convert table name to CamelCase
             $modelClassName = Str::studly(str_replace(' ', '', $activityname));
@@ -82,11 +85,19 @@ class AddActivityController extends Controller
         
     }
     public function showActivityFormHome()
-    {
-        $activityNames = Addactivity::orderBy('id')->pluck('activityname', 'id');
-        $activityName = $activityNames->reverse();
-        return view('home', compact('activityName'));
-    }
+{
+    // Get the ID of the logged-in user
+    $loggedInUserId = auth()->user()->id;
+
+    // Retrieve activities where the account_id matches the ID of the logged-in user
+    $activityNames = Addactivity::where('account_id', $loggedInUserId)
+                                  ->orderBy('id')
+                                  ->pluck('activityname', 'id')
+                                  ->reverse();
+
+    return view('home', compact('activityNames'));
+}
+
     
 
 }

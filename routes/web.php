@@ -34,12 +34,12 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middle
 //logout end
 
 //for display student list
-Route::get('/studentlist', [AddStudentController::class, 'studentlist'])->name('studentlist');
+Route::get('/studentlist', [AddStudentController::class, 'studentlist'])->name('studentlist')->middleware('auth');
 //end for display student list
 
 
 //for display student activity attendance
-Route::get('/studentlistAA', [StudentListAAController::class, 'getTableData'])->name('getTableData');
+Route::get('/studentlistAA', [StudentListAAController::class, 'getTableData'])->name('getTableData')->middleware('auth');
 Route::post('/studentlistAA', [StudentListAAController::class, 'getTableData'])->name('getTableData');
 //end for display student activity attendance
 
@@ -54,9 +54,9 @@ Route::put('/addstudent/{id}', [AddStudentController::class, 'update'])->name('a
 Route::get('/addactivity', [AddActivityController::class, 'addactivity'])->name('addactivity');
 Route::post('/addactivity', [AddActivityController::class, 'addactivityPost'])->name('addactivityPost');
 //end add activity route
-Route::get('/home', [AddActivityController::class, 'showActivityFormHome'])->name('home');
+Route::get('/home', [AddActivityController::class, 'showActivityFormHome'])->name('home')->middleware('auth');
 Route::post('/home', [AttendanceController::class, 'attendancePost'])->name('attendancePost');
 
 //student penalty route
-Route::get('/studentpenalty', [StudentPenaltyController::class, 'studentpenalty'])->name('studentpenalty');
+Route::get('/studentpenalty', [StudentPenaltyController::class, 'studentpenalty'])->name('studentpenalty')->middleware('auth');
 Route::get('/studentpenalty', [StudentPenaltyController::class, 'getTableName'])->name('getTableName');

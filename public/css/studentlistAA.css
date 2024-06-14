@@ -48,10 +48,14 @@ nav {
 .content {
     height: 548px;
 }
-.addstudent {
+.iconaddactivity {
     width: 25px;
     height: 25px;
 }
+#addActivity input {
+    text-transform: uppercase;
+}
+
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: #d0f7d3;
 }

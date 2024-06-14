@@ -22,6 +22,7 @@ return new class extends Migration
             $table->time('noonEndTime');
             $table->time('afternoonStartTime');
             $table->time('afternoonEndTime');
+            $table->string('account_id');
             $table->timestamps();
         }); 
     }

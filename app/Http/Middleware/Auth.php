@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class Auth
 {
     /**
@@ -15,6 +16,10 @@ class Auth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (Auth::check()) {
+            return $next($request);
+        }
+
+        return redirect()->route('login');
     }
 }

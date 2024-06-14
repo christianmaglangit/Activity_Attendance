@@ -11,6 +11,7 @@ class AttendanceController extends Controller
 {
     public function attendancePost(Request $request)
 {
+    $loggedInUserId = auth()->user()->id;
     $request->validate([
         'activityname' => 'required',
         'idinput' => 'required',
@@ -22,7 +23,9 @@ class AttendanceController extends Controller
     $realTime = $request->input('realTime'); // Fetch current time from the form
 
     // Get student information based on idnumber from the addstudent table
-    $studentInfo = Addstudent::where('idnumber', $idNumber)->first();
+    $studentInfo = Addstudent::where('idnumber', $idNumber)
+                          ->where('account_id', $loggedInUserId)
+                          ->first();
 
     // If no information found, return to the previous page
     if (!$studentInfo) {
@@ -56,6 +59,7 @@ $data = [
     'name' => $studentInfo->name,
     'yearlevel' => $studentInfo->yearlevel,
     'course' => $studentInfo->course,
+    'account_id' => $loggedInUserId,
     'created_at' => now(),
     'updated_at' => now()
 ];

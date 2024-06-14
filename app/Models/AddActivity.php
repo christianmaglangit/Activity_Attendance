@@ -18,6 +18,7 @@ class AddActivity extends Model
         'noonStartTime',
         'noonEndTime',
         'afternoonStartTime',
-        'afternoonEndTime'
+        'afternoonEndTime',
+        'account_id'
     ];
 }

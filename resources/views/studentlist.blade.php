@@ -26,13 +26,13 @@
                         <a class="nav-link {{ Request::is('getTableData') ? 'active' : '' }}" href="{{route('getTableData')}}">Activity Attendance</a>
                     </li>
                     <li class="nav-item ps-2">
-                        <a class="nav-link {{ Request::is('logout') ? 'active' : '' }} disabled" id="logout" href="{{route('logout')}}">Logout</a>
+                        <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}" id="logout" href="{{route('logout')}}">Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <h2 class="w-1oo d-flex justify-content-center">College of Computer Studies - List of Student</h2>
+    <h2 class="w-1oo d-flex justify-content-center"> List of Student</h2>
     <div class="d-flex justify-content-around">
         <div class="selection d-flex gap-2">
             <label for="yearlevel" class="d-flex justify-conten-center align-items-center">Year level</label>

@@ -26,13 +26,13 @@
                         <a class="nav-link {{ Request::is('getTableData') ? 'active' : '' }}" href="{{route('getTableData')}}">Activity Attendance</a>
                     </li>
                     <li class="nav-item ps-2">
-                        <a class="nav-link {{ Request::is('logout') ? 'active' : '' }} disabled" id="logout" href="{{route('logout')}}">Logout</a>
+                        <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}" id="logout" href="{{route('logout')}}">Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <h2 class="w-1oo d-flex justify-content-center">College of Computer Studies - Activity Attendance</h2>
+    <h2 class="w-1oo d-flex justify-content-center">Student Activity Attendance</h2>
     <div class="content">
         @if (isset($activityNames))
         <div class="d-flex justify-content-around">
@@ -56,7 +56,7 @@
         </div>
         <div class="d-flex justify-content-center align-items-center">
         <button type="button" class="btn btn-success ms-3" data-toggle="modal" data-target="#addActivity">
-                <img class="addstudent " src="images/addstudent.png" alt="Add Student">
+                <img class="iconaddactivity " src="images/addstudent.png" alt="Add Student">
                 Add Activity
             </button>
         </div>
@@ -73,11 +73,14 @@
                 <table id="studentTable" class="container table table-striped table-bordered table-hover">
                     <thead class="tableHead">
                         <tr>
-                            @foreach ($tableData->first() as $columnName => $value)
-                                @if (!in_array($columnName, $columnsToExclude))
-                                    <th class="bg-success text-light">{{ strtoupper($columnName) }}</th>
-                                @endif
-                            @endforeach
+                        <th class="bg-success text-light">ID Number</th>
+                        <th class="bg-success text-light">Name</th>
+                        <th class="bg-success text-light">Course</th>
+                        <th class="bg-success text-light">Year Level</th>
+                        <th class="bg-success text-light">Time In AM</th> 
+                        <th class="bg-success text-light">Time Out AM</th>
+                        <th class="bg-success text-light">Time In PM</th> 
+                        <th class="bg-success text-light">Time Out PM</th>   
                         </tr>
                     </thead>
                     <tbody>

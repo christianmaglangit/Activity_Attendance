@@ -15,8 +15,9 @@ class StudentListAAController extends Controller
     
     public function getTableData(Request $request)
     {
+        $loggedInUserId = auth()->user()->id;
         // Define columns to exclude
-        $columnsToExclude = ['id', 'created_at', 'updated_at'];
+        $columnsToExclude = ['id', 'created_at', 'updated_at', 'account_id'];
     
         // Initialize $tableData variable
         $tableData = null;
@@ -38,13 +39,17 @@ class StudentListAAController extends Controller
                 });
             }
         }
-    
-        // Get all activity names for the dropdown menu
-        $activityNames = AddActivity::orderBy('id')->pluck('activityname', 'id');
-        $activityNames = $activityNames->reverse();
-    
-        // Pass the data to the view
-        return view('studentlistAA', compact('tableData', 'columnsToExclude', 'activityNames', 'selectedName'));
+        $loggedInUserId = auth()->user()->id;
+
+// Get activity names associated with the logged-in user
+$activityNames = AddActivity::where('account_id', $loggedInUserId)
+                             ->orderBy('id')
+                             ->pluck('activityname', 'id')
+                             ->reverse();
+
+// Pass the data to the view
+return view('studentlistAA', compact('tableData', 'columnsToExclude', 'activityNames', 'selectedName'));
+
     }
     
 

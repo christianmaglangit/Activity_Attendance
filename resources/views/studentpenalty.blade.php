@@ -70,7 +70,6 @@
                             @foreach($activityNames as $activityname)
                                 <th>{{ $activityname }}</th>
                             @endforeach
-                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,16 +80,12 @@
                                 <td>{{$student->name}}</td>
                                 <td>{{$student->course}}</td>
                                 <td>{{$student->yearlevel}}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>total</td>
+                                @foreach($activityNames as $activityname)
+                                <th>{{ $activityname }}</th>
+                                 @endforeach
                             </tr>
                         @endforeach
-
                         </tr>   
-                            
                     </tbody>
                 </table>
             </div>

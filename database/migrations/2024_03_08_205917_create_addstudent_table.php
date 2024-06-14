@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('course');
             $table->string('yearlevel');
             $table->string('collegedep');
+            $table->string('account_id');
             $table->timestamps();
         });
     }

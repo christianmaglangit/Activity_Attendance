@@ -26,7 +26,7 @@
                         <a class="nav-link {{ Request::is('getTableData') ? 'active' : '' }}" href="{{route('getTableData')}}">Activity Attendance</a>
                     </li>
                     <li class="nav-item ps-2">
-                        <a class="nav-link {{ Request::is('logout') ? 'active' : '' }} disabled" id="logout" href="{{route('logout')}}">Logout</a>
+                        <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}" id="logout" href="{{route('logout')}}">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +37,7 @@
             @csrf
             <label for="activityname" style="font-size:15px;">Activity Name:</label>
             <select class="form-control w-50" style="font-size:15px;" id="activityname" name="activityname">
-                @foreach($activityName as $name)
+                @foreach($activityNames as $name)
                     <option value="{{ $name }}">{{ $name }}</option>
                 @endforeach
             </select>
