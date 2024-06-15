@@ -52,7 +52,7 @@ nav {
     align-items: center;
     padding: 20px;
     background-color: #ffffff;
-    width: 400px;
+
     height: 500px;
     border-radius: 15px;
     border: 5px solid #0c8833;
@@ -60,10 +60,9 @@ nav {
         0 10px 30px 0 rgba(0, 0, 0, 0.5);
 }
 .containerform {
-    margin-top: 41px;
     border-radius: 13px;
     display: flex;
-    align-items: center;
+    margin-top: 40px;
     justify-content: center;
 }
 form label {
@@ -96,7 +95,6 @@ form button {
     background-color: green;
     color: white;
     font-weight: bold;
-    margin-bottom: 50px;
 }
 form button:hover {
     background-color: green;
@@ -120,5 +118,9 @@ footer {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 3px;
-    margin-top: 56px;
+    margin-top: 57px;
+}
+footer a img {
+    width: 25px;
+    height: 25px;
 }

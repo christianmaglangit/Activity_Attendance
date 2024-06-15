@@ -46,58 +46,72 @@
                     @endforeach
                 </select>
             </form>
-            <div class="d-flex justify-conten-center align-items-center">Student Total Number : <span id="rowCount">0</span></div>
-            <div class="searchengine d-flex justify-conten-center align-items-center" >
-                <form id="searchForm " class="d-flex justify-conten-center align-items-center gap-2">
-                    <label for="search">Search</label>
-                    <input class="form-control me-2" type="text" id="searchInput" placeholder="ID Number">
-                </form>
+            <div class="d-flex justify-content-center align-items-center">
+                <button type="button" class="btn btn-success ms-3" data-toggle="modal" data-target="#addActivity">
+                    <img class="iconaddactivity " src="images/addstudent.png" alt="Add Student">
+                    Add Activity
+                </button>
             </div>
-        </div>
-        <div class="d-flex justify-content-center align-items-center">
-        <button type="button" class="btn btn-success ms-3" data-toggle="modal" data-target="#addActivity">
-                <img class="iconaddactivity " src="images/addstudent.png" alt="Add Student">
-                Add Activity
-            </button>
+            
         </div>
         @endif
         
-
         @if (isset($tableData))
         <div class="tableclass">
             <div class="tableclass1">
-            @if (!empty($selectedName))
-                <h4 class="dbname d-flex justify-content-center align-items-center">{{ strtoupper($selectedName) }}</h4>
-            @endif
-            @if (!empty($tableData))
-                <table id="studentTable" class="container table table-striped table-bordered table-hover">
-                    <thead class="tableHead">
-                        <tr>
-                        <th class="bg-success text-light">ID Number</th>
-                        <th class="bg-success text-light">Name</th>
-                        <th class="bg-success text-light">Course</th>
-                        <th class="bg-success text-light">Year Level</th>
-                        <th class="bg-success text-light">Time In AM</th> 
-                        <th class="bg-success text-light">Time Out AM</th>
-                        <th class="bg-success text-light">Time In PM</th> 
-                        <th class="bg-success text-light">Time Out PM</th>   
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($tableData as $rowData)
+                
+                @if (!empty($selectedName))
+                    <h4 class="dbname d-flex justify-content-center align-items-center">{{ strtoupper($selectedName) }}</h4>
+                    <div class="d-flex justify-content-around">
+                        <div class="selection gap-2 mb-1 d-flex justify-content-center align-items-center">
+                            <label for="yearlevel" class="d-flex justify-conten-center align-items-center">Year level</label>
+                            <select class="form-control" style="font-size:15px; width:200px;" id="year" name="year">
+                                <option value="all" selected>All Year Levels</option>
+                                <option value="1ST YEAR">1st year</option>
+                                <option value="2ND YEAR">2nd year</option>
+                                <option value="3RD YEAR">3rd year</option>
+                                <option value="4TH YEAR">4th year</option>
+                            </select>
+                        </div>
+                        <h6 class="d-flex justify-content-center align-items-center">Student Total Number : <span id="rowCount">0</span></h6>
+                        <div class="searchengine d-flex justify-conten-center align-items-center" >
+                            <form id="searchForm " class="d-flex justify-conten-center align-items-center gap-2">
+                                <label for="search">Search</label>
+                                <input class="form-control me-2" type="text" id="searchInput" placeholder="ID Number">
+                            </form>
+                        </div>
+                    </div>
+                @endif
+                
+                @if (!empty($tableData))
+                    <table id="studentTable" class="container table table-striped table-bordered table-hover">
+                        <thead class="tableHead">
                             <tr>
-                                @foreach ($rowData as $value)
-                                    <td>{{ strtoupper($value) }}</td>
-                                @endforeach
+                            <th class="bg-success text-light">ID Number</th>
+                            <th class="bg-success text-light">Name</th>
+                            <th class="bg-success text-light">Year Level</th>
+                            <th class="bg-success text-light">Course</th>
+                            <th class="bg-success text-light">Time In AM</th> 
+                            <th class="bg-success text-light">Time Out AM</th>
+                            <th class="bg-success text-light">Time In PM</th> 
+                            <th class="bg-success text-light">Time Out PM</th>   
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @else
-                <p>No data available for the selected activity.</p>
-            @endif
-            </div>
-        </div>   
+                        </thead>
+                        <tbody>
+                            @foreach ($tableData as $rowData)
+                                <tr>
+                                    @foreach ($rowData as $value)
+                                        <td>{{ strtoupper($value) }}</td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <p>No data available for the selected activity.</p>
+                @endif
+                </div>
+            </div>   
         @endif
     </div>
 
@@ -171,7 +185,13 @@
             </div>
         </div>
     </div>
-    <footer class="bg-success">Developer - Christian bolohan maglangit - Developer</footer>
+    <footer class="bg-success gap-3"> 
+        <a href="https://www.facebook.com/christian.bmaglangit" target=”_blank”><img src="images/facebook.png" alt="Facebook"></a>
+        <a href="https://mail.google.com/mail/u/0/#inbox?compose=new&to=christianmaglangit@gmail.com" target="_blank"><img src="images/gmail.png" alt="Gmail"></a>
+        Developer - Christian bolohan maglangit - Developer 
+        <a href="https://www.linkedin.com/in/christian-maglangit-8b65b8288/" target=”_blank”><img src="images/linkedin.png" alt="Linkedin"></a>
+        <a href="https://github.com/christianmaglangit" target=”_blank”><img src="images/github.png" alt="GitHub"></a>
+    </footer>
     <script src="javascript/bootstrapjs/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -249,6 +269,28 @@
                 backdrop.parentNode.removeChild(backdrop);
             });
         });
+        
+        document.getElementById('year').addEventListener('change', function() {
+    var yearLevel = this.value;
+    var rows = document.querySelectorAll('#studentTable tbody tr');
+    var visibleRowCount = 0;
+
+    rows.forEach(function(row) {
+        var yearCell = row.querySelector('td:nth-child(3)').textContent.trim(); // Adjust nth-child based on your column index
+
+        if (yearLevel === 'all' || yearCell === yearLevel) {
+            row.style.display = '';
+            visibleRowCount++;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+
+    // Optionally update a count of visible rows
+    document.getElementById('rowCount').textContent = visibleRowCount;
+});
+
+
         function checkSuccessMessage() {
             // Get the success message from the page
             const successMessage = '{{ session('success') }}';

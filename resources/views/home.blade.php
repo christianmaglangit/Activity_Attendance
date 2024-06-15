@@ -32,7 +32,10 @@
             </div>
         </div>
     </nav>
-    <div class="containerform ">    
+    <div class="containerform d-flex justify-content-around">   
+        <div class="logos d-flex justify-content-center align-items-center">
+            <img class="w-100" src="images/ccslogo.gif" alt="">
+        </div> 
         <form method="POST" action="{{route('attendancePost')}}" id="idform">
             @csrf
             <label for="activityname" style="font-size:15px;">Activity Name:</label>
@@ -48,8 +51,17 @@
             <h1 id="realtime" class="mt-4"></h1>
             <h3 id="realdate"></h3>
         </form>
+        <div class="logos d-flex justify-content-center align-items-center">
+            <img class="w-100" src="images/ccslogo.gif" alt="">
+        </div> 
     </div>
-    <footer class="bg-success"> Developer - Christian bolohan maglangit - Developer</footer>
+    <footer class="bg-success gap-3"> 
+        <a href="https://www.facebook.com/christian.bmaglangit" target=”_blank”><img src="images/facebook.png" alt="Facebook"></a>
+        <a href="https://mail.google.com/mail/u/0/#inbox?compose=new&to=christianmaglangit@gmail.com" target="_blank"><img src="images/gmail.png" alt="Gmail"></a>
+        Developer - Christian bolohan maglangit - Developer 
+        <a href="https://www.linkedin.com/in/christian-maglangit-8b65b8288/" target=”_blank”><img src="images/linkedin.png" alt="Linkedin"></a>
+        <a href="https://github.com/christianmaglangit" target=”_blank”><img src="images/github.png" alt="GitHub"></a>
+    </footer>
     <script src="js/bootstrapjs/bootstrap.bundle.min.js"></script>
     <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <script>

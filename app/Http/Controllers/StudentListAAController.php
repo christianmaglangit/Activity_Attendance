@@ -16,9 +16,6 @@ class StudentListAAController extends Controller
     public function getTableData(Request $request)
     {
         $loggedInUserId = auth()->user()->id;
-        // Define columns to exclude
-        $columnsToExclude = ['id', 'created_at', 'updated_at', 'account_id'];
-    
         // Initialize $tableData variable
         $tableData = null;
     
@@ -28,27 +25,26 @@ class StudentListAAController extends Controller
         // If a name is selected from the dropdown menu
         if ($request->has('activityname')) {
             $selectedName = $request->input('activityname');
-    
+            
             // Check if the selected name exists in the database
             if (AddActivity::where('activityname', $selectedName)->exists()) {
-                // Get all columns from the table
-                $tableData = DB::table($selectedName)->get();
-                // Filter out excluded columns
-                $tableData = $tableData->map(function ($item) use ($columnsToExclude) {
-                    return collect($item)->except($columnsToExclude)->toArray();
-                });
+                // Get specific columns and order by 'name'
+                $tableData = DB::table($selectedName)
+                                ->select('idnumber', 'name', 'yearlevel', 'course' ,'TIMorning', 'TOMorning', 'TINoon' ,'TONoon')
+                                ->orderBy('name')
+                                ->get();
             }
         }
+        
         $loggedInUserId = auth()->user()->id;
+        // Get activity names associated with the logged-in user
+        $activityNames = AddActivity::where('account_id', $loggedInUserId)
+                                    ->orderBy('id')
+                                    ->pluck('activityname', 'id')
+                                    ->reverse();
 
-// Get activity names associated with the logged-in user
-$activityNames = AddActivity::where('account_id', $loggedInUserId)
-                             ->orderBy('id')
-                             ->pluck('activityname', 'id')
-                             ->reverse();
-
-// Pass the data to the view
-return view('studentlistAA', compact('tableData', 'columnsToExclude', 'activityNames', 'selectedName'));
+        // Pass the data to the view
+        return view('studentlistAA', compact('tableData', 'activityNames', 'selectedName'));
 
     }
     
