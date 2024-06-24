@@ -5,6 +5,7 @@
 body {
     background-color: #d0f7d3;
     font-family: "Montserrat", sans-serif;
+    height: 100vh;
 }
 #mainlogo {
     width: 70px;
@@ -34,10 +35,12 @@ nav {
     color: #0c8833;
     border-radius: 13px;
 }
+
 #navbarNav a:hover {
     border-bottom: 2px solid white;
     border-radius: 5px;
 }
+
 .nav-link.active {
     border-bottom: 2px solid white;
     border-radius: 5px;
@@ -46,7 +49,7 @@ nav {
     width: 200px;
 }
 .content {
-    height: 548px;
+    height: 500px;
 }
 .iconaddactivity {
     width: 25px;
@@ -59,15 +62,29 @@ nav {
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: #d0f7d3;
 }
-.tableclass {
-    height: 490px;
+.container tbody th,
+td {
+    font-size: 13px;
+}
+
+.container tbody tr {
+    height: 12px;
+}
+
+.tablerowculm {
+    height: 335px;
     overflow: auto;
     margin-top: 10px;
 }
 .dbname {
     font-weight: 700;
 }
+tbody tr:last-child {
+    border-bottom: 2px solid green;
+}
 footer {
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,8 +93,9 @@ footer {
     font-size: 15px;
     font-weight: 600;
     text-transform: uppercase;
-    margin-top: 3px;
     letter-spacing: 3px;
+    margin-top: 60px;
+    bottom: 0;
 }
 footer a img {
     width: 25px;

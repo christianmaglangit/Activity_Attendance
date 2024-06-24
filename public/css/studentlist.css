@@ -5,6 +5,7 @@
 body {
     background-color: #d0f7d3;
     font-family: "Montserrat", sans-serif;
+    height: 100vh;
 }
 #mainlogo {
     width: 70px;
@@ -34,6 +35,7 @@ nav {
     color: #0c8833;
     border-radius: 13px;
 }
+
 #navbarNav a:hover {
     border-bottom: 2px solid white;
     border-radius: 5px;
@@ -47,14 +49,26 @@ nav {
     width: 25px;
     height: 25px;
 }
-
-.table tbody tr:nth-of-type(odd) {
-    background-color: red;
-}
 .tableclass {
-    height: 455px;
+    height: 380px;
+    width: 100%;
     overflow: auto;
-    margin-top: 19px;
+    margin-top: 10px;
+}
+.container {
+    margin-top: 10px;
+    height: 100%;
+    width: 100%;
+}
+tbody tr td {
+    height: 40px;
+    font-size: 13px;
+}
+tbody tr td .btn {
+    height: 30px;
+}
+tbody tr:last-child {
+    border-bottom: 2px solid green;
 }
 #editForm input,
 label {
@@ -65,15 +79,18 @@ input {
     text-transform: uppercase;
 }
 footer {
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     height: 30px;
-    font-weight: 600;
     font-size: 15px;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 3px;
+    bottom: 0;
 }
 footer a img {
     width: 25px;

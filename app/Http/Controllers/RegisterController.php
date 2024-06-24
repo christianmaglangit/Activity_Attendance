@@ -9,7 +9,6 @@ use App\Models\AddStudent;
 
 class RegisterController extends Controller
 {
-    //register function mo register padulong db
     public function register(){
         return view('register');
     }
@@ -35,5 +34,4 @@ class RegisterController extends Controller
         return view('login');
     }
     
-     // end sa register function mo register padulong db
 }

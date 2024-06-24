@@ -12,10 +12,8 @@ class AddStudentController extends Controller
     public function addstudent(){
         return view('addstudent');
     }
-    // Modify your controller to associate students with accounts
     public function addstudentPost(Request $request){
-        $loggedInUserId = auth()->user()->id; // Get the ID of the logged-in user
-
+        $loggedInUserId = auth()->user()->id; 
         $existingStudent = Addstudent::where('idnumber', $request->idnumber)->where('account_id', $loggedInUserId)->first();
         if ($existingStudent) {
             return redirect()->back()->with('alreadyexists', "Student with ID Number already exists.");
@@ -27,17 +25,14 @@ class AddStudentController extends Controller
         $addstudent->course = $request->course;
         $addstudent->yearlevel = $request->yearlevel;
         $addstudent->collegedep = $request->collegedep;
-        $addstudent->account_id = $loggedInUserId; // Assign the ID of the logged-in user as the account_id
-
+        $addstudent->account_id = $loggedInUserId; 
         $addstudent->save();
         return redirect()->back()->with('addsuccess', "Student Add Success");
     }
 
-    // Modify your studentlist method to fetch students associated with the logged-in account
     public function studentlist()
     {
-        $loggedInUserId = auth()->user()->id; // Get the ID of the logged-in user
-
+        $loggedInUserId = auth()->user()->id; 
         $studentlist = Addstudent::where('account_id', $loggedInUserId)->orderBy('name')->get();
         return view('studentlist',[
             'studentlist' => $studentlist
@@ -46,15 +41,13 @@ class AddStudentController extends Controller
 
     public function update(Request $request, string $id)
     {
-        
         $student = Addstudent::find($id);
         $student->name = $request->name;
         $student->idnumber = $request->idnumber;
         $student->course = $request->course;
         $student->yearlevel = $request->yearlevel;
         $student->collegedep = $request->collegedep;
-        $student->save();
-        
+        $student->save();   
         return redirect()->back()->with('success', "Student update Success");
     }
 

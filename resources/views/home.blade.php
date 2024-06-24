@@ -64,6 +64,7 @@
     </footer>
     <script src="js/bootstrapjs/bootstrap.bundle.min.js"></script>
     <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <!-- date na script -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("idInput").focus();
@@ -71,31 +72,22 @@
         function updateDateTime() {
             const date = document.getElementById('realdate');
             const time = document.getElementById('realtime');
-            const realTimeInput = document.getElementById('realTime'); // Fetch hidden input field
+            const realTimeInput = document.getElementById('realTime'); 
             const now = new Date();
             date.innerHTML = now.toLocaleDateString();
             time.innerHTML = now.toLocaleTimeString();
-            realTimeInput.value = now.toLocaleTimeString(); // Set the value of the hidden input field
+            realTimeInput.value = now.toLocaleTimeString(); 
         } 
-
-        // Update the current date and time when the page loads
         updateDateTime();
-
-        // Update the current date and time every second
-        setInterval(updateDateTime, 1000);
-        
-        // Function to validate the form before submission
-        
+        setInterval(updateDateTime, 1000);        
     </script>
     <script src="javascript/bootstrapjs/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Check for success message and display SweetAlert -->
+    
+    <!-- sweeralert script -->
     <script>
-        // Function to check for success message and display SweetAlert
         function checkSuccessMessage() {
-            // Get the success message from the page
             const successMessage = '{{ session('success') }}';
-            // If success message exists, display SweetAlert
             if (successMessage) {
                 Swal.fire({
                     icon: 'success',
@@ -106,12 +98,10 @@
                 });
             }
         }
-        // Call the function when the page loads
         checkSuccessMessage();
+
         function checkErrorMessage() {
-            // Get the success message from the page
             const errorMessage = '{{ session('Not Found') }}';
-            // If success message exists, display SweetAlert
             if (errorMessage) {
                 Swal.fire({
                     icon: 'info',
@@ -122,13 +112,10 @@
                 });
             }
         }
-        // Call the function when the page loads
         checkErrorMessage();
 
         function checkWarningMessage() {
-            // Get the success message from the page
             const warningMessage = '{{ session('warning') }}';
-            // If success message exists, display SweetAlert
             if (warningMessage) {
                 Swal.fire({
                     icon: 'warning',
@@ -139,7 +126,6 @@
                 });
             }
         }
-        // Call the function when the page loads
         checkWarningMessage();
     </script>
 </body>

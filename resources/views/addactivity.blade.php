@@ -77,13 +77,10 @@
     <footer>Developer - Christian maglangit - Developer</footer>
     <script src="javascript/bootstrapjs/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Check for success message and display SweetAlert -->
+    <!--  SweetAlert ang naa danhi na script -->
     <script>
-        // Function to check for success message and display SweetAlert
         function checkSuccessMessage() {
-            // Get the success message from the page
             const successMessage = '{{ session('success') }}';
-            // If success message exists, display SweetAlert
             if (successMessage) {
                 Swal.fire({
                     icon: 'success',
@@ -94,12 +91,9 @@
                 });
             }
         }
-        // Call the function when the page loads
         checkSuccessMessage();
         function checkWarningMessage() {
-            // Get the success message from the page
             const warningMessage = '{{ session('warning') }}';
-            // If success message exists, display SweetAlert
             if (warningMessage) {
                 Swal.fire({
                     icon: 'warning',
@@ -110,7 +104,6 @@
                 });
             }
         }
-        // Call the function when the page loads
         checkWarningMessage();
     </script>
 </body>

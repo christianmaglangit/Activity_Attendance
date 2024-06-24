@@ -60,32 +60,30 @@
         </div>
         <div class="tableclass">
             <div class="tableclass1">
-                <table  id="studentTable" class="container table table-striped table-bordered table-hover">
+                <table id="studentTable" class="container table table-striped table-bordered table-hover">
                     <thead class="tableHead">
                         <tr>
                             <th>ID Number</th>
                             <th>Name</th>
                             <th>Course</th>
                             <th>Year Level</th>
-                            @foreach($activityNames as $activityname)
+                            @foreach($activityNames as $activityId => $activityname)
                                 <th>{{ $activityname }}</th>
                             @endforeach
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
                         @foreach($studentList as $student)
                             <tr>
-                                <td>{{$student->idnumber}}</td>
-                                <td>{{$student->name}}</td>
-                                <td>{{$student->course}}</td>
-                                <td>{{$student->yearlevel}}</td>
-                                @foreach($activityNames as $activityname)
-                                <th>{{ $activityname }}</th>
-                                 @endforeach
+                                <td>{{ $student->idnumber }}</td>
+                                <td>{{ $student->name }}</td>
+                                <td>{{ $student->course }}</td>
+                                <td>{{ $student->yearlevel }}</td>
+                                @foreach($activityNames as $activityId => $activityname)
+                                    <td>{{ $nullCounts[$student->idnumber] }}</td>
+                                @endforeach
                             </tr>
                         @endforeach
-                        </tr>   
                     </tbody>
                 </table>
             </div>

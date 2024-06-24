@@ -59,7 +59,7 @@
         </button>
     </div>
     <div class="tableclass">
-        <table  id="studentTable" class="container table table-striped table-bordered table-hover">
+        <table  id="studentTable" class="container table  table-bordered table-hover">
             <thead class="tableHead">
                 <tr>
                     <th class="bg-success text-light">ID Number</th>
@@ -79,12 +79,14 @@
                     <td>{{strtoupper($student->yearlevel)}}</td>
                     <td>{{strtoupper($student->collegedep)}}</td>
         
-                    <td class="d-flex gap-2 justify-content-center border"><button class="btn btn-primary edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-studentId="{{ $student->id }}">Edit</button>
+                    <td class="d-flex gap-2 justify-content-center align-items-center">
+                        <button class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#editModal" data-studentId="{{ $student->id }}">Edit</button>
                         <form class="deleteForm" action="{{ route('addstudentdestroy', $student->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        </form></td>
+                            <button class="btn btn-danger d-flex align-items-center" type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>      
                 @empty
                     <tr>
@@ -197,7 +199,6 @@
                 backdrop.classList.add('modal-backdrop', 'fade', 'show');
                 document.body.appendChild(backdrop);
                 
-                // Fill modal fields with data from the clicked row
                 document.getElementById('editForm').setAttribute('action', '/addstudent/' + studentId);
                 document.getElementById('name').value = parentRow.cells[1].textContent.trim();
                 document.getElementById('idnumber').value = parentRow.cells[0].textContent.trim();
@@ -374,7 +375,6 @@
             
             updateRowCount();
         });
-
     </script>
 
 </body>

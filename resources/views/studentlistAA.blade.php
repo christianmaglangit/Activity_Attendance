@@ -62,7 +62,7 @@
                 
                 @if (!empty($selectedName))
                     <h4 class="dbname d-flex justify-content-center align-items-center">{{ strtoupper($selectedName) }}</h4>
-                    <div class="d-flex justify-content-around">
+                    <div class="d-flex justify-content-around align-content-center mb-2">
                         <div class="selection gap-2 mb-1 d-flex justify-content-center align-items-center">
                             <label for="yearlevel" class="d-flex justify-conten-center align-items-center">Year level</label>
                             <select class="form-control" style="font-size:15px; width:200px;" id="year" name="year">
@@ -82,9 +82,9 @@
                         </div>
                     </div>
                 @endif
-                
+                <div class="tablerowculm">
                 @if (!empty($tableData))
-                    <table id="studentTable" class="container table table-striped table-bordered table-hover">
+                    <table id="studentTable" class="container table table-bordered table-hover">
                         <thead class="tableHead">
                             <tr>
                             <th class="bg-success text-light">ID Number</th>
@@ -108,6 +108,7 @@
                         </tbody>
                     </table>
                 @else
+                </div>
                     <p>No data available for the selected activity.</p>
                 @endif
                 </div>
@@ -271,30 +272,24 @@
         });
         
         document.getElementById('year').addEventListener('change', function() {
-    var yearLevel = this.value;
-    var rows = document.querySelectorAll('#studentTable tbody tr');
-    var visibleRowCount = 0;
+        var yearLevel = this.value;
+        var rows = document.querySelectorAll('#studentTable tbody tr');
+        var visibleRowCount = 0;
+            rows.forEach(function(row) {
+                var yearCell = row.querySelector('td:nth-child(3)').textContent.trim(); // Adjust nth-child based on your column index
 
-    rows.forEach(function(row) {
-        var yearCell = row.querySelector('td:nth-child(3)').textContent.trim(); // Adjust nth-child based on your column index
-
-        if (yearLevel === 'all' || yearCell === yearLevel) {
-            row.style.display = '';
-            visibleRowCount++;
-        } else {
-            row.style.display = 'none';
-        }
-    });
-
-    // Optionally update a count of visible rows
-    document.getElementById('rowCount').textContent = visibleRowCount;
-});
-
+                if (yearLevel === 'all' || yearCell === yearLevel) {
+                    row.style.display = '';
+                    visibleRowCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            document.getElementById('rowCount').textContent = visibleRowCount;
+        });
 
         function checkSuccessMessage() {
-            // Get the success message from the page
             const successMessage = '{{ session('success') }}';
-            // If success message exists, display SweetAlert
             if (successMessage) {
                 Swal.fire({
                     icon: 'success',
@@ -305,12 +300,9 @@
                 });
             }
         }
-        // Call the function when the page loads
         checkSuccessMessage();
         function checkWarningMessage() {
-            // Get the success message from the page
             const warningMessage = '{{ session('warning') }}';
-            // If success message exists, display SweetAlert
             if (warningMessage) {
                 Swal.fire({
                     icon: 'warning',
@@ -321,9 +313,7 @@
                 });
             }
         }
-        // Call the function when the page loads
         checkWarningMessage();
-        
     </script>
 </body>
 </html>
