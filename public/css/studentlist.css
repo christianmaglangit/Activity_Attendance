@@ -55,13 +55,7 @@ nav {
     overflow: auto;
     margin-top: 10px;
 }
-.container {
-    margin-top: 10px;
-    height: 100%;
-    width: 100%;
-}
 tbody tr td {
-    height: 40px;
     font-size: 13px;
 }
 tbody tr td .btn {
@@ -70,14 +64,33 @@ tbody tr td .btn {
 tbody tr:last-child {
     border-bottom: 2px solid green;
 }
+
+#editModalLabel {
+    font-weight: 700;
+}
 #editForm input,
 label {
     text-transform: uppercase;
+}
+#editForm label {
+    font-weight: 600;
+}
+#editForm input {
+    height: 30px;
+    font-size: 16px;
 }
 #addStudentModal label,
 input {
     text-transform: uppercase;
 }
+#addStudentModal label {
+    font-weight: 600;
+}
+.deletedit img {
+    width: 20px;
+    height: 20px;
+}
+
 footer {
     position: fixed;
     width: 100%;

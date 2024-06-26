@@ -117,12 +117,11 @@
     </div>
 
     <!-- modal add activity -->
-    <div class="modal fade" id="addActivity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addActivity" tabindex="-1" aria-labelledby="AddActivityModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Activity</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header d-flex justify-content-center">
+                    <h5 class="modal-title" id="AddActivityModalLabel">Add Activity</h5>
                 </div>
                 <div class="modal-body">
                     <!-- Your form goes here -->
@@ -130,17 +129,17 @@
                         @csrf
                         <div class="mb-3">
                             <label class="form-label title">Activity Name</label>
-                            <input type="text" name="activityname" class="form-control" placeholder="Activity Name">
+                            <input type="text" name="activityname" class="form-control" placeholder="Activity Name" required>
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col">
                                     <label class="form-label timetitle">Time In Morning Start</label>
-                                    <input class="form-control timefield" type="time" name="TImorningStartTime" placeholder="Time In Morning Start">
+                                    <input class="form-control timefield" type="time" name="TImorningStartTime"  required>
                                 </div>
                                 <div class="col">
                                     <label class="form-label timetitle">Time In Morning End</label>
-                                    <input class="form-control timefield" type="time" name="TImorningEndTime" placeholder="Time In Morning End">
+                                    <input class="form-control timefield" type="time" name="TImorningEndTime"  required>
                                 </div>
                             </div>
                         </div>
@@ -148,11 +147,11 @@
                             <div class="row">
                                 <div class="col">
                                     <label class="form-label timetitle">Time Out Morning Start</label>
-                                    <input class="form-control timefield" type="time" name="TOmorningStartTime" placeholder="Time Out Morning Start">
+                                    <input class="form-control timefield" type="time" name="TOmorningStartTime"  required>
                                 </div>
                                 <div class="col">
                                     <label class="form-label timetitle">Time Out Morning End</label>
-                                    <input class="form-control timefield" type="time" name="TOmorningEndTime" placeholder="Time Out Morning End">
+                                    <input class="form-control timefield" type="time" name="TOmorningEndTime"  required>
                                 </div>
                             </div>
                         </div>
@@ -160,11 +159,11 @@
                             <div class="row">
                                 <div class="col">
                                     <label class="form-label timetitle">Time In Afternoon Start</label>
-                                    <input class="form-control timefield" type="time" name="noonStartTime" placeholder="Time In Afternoon Start">
+                                    <input class="form-control timefield" type="time" name="noonStartTime"  required>
                                 </div>
                                 <div class="col">
                                     <label class="form-label timetitle">Time In Afternoon End</label>
-                                    <input class="form-control timefield" type="time" name="noonEndTime" placeholder="Time In Afternoon End">
+                                    <input class="form-control timefield" type="time" name="noonEndTime" required>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +179,10 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">Add Activity</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btnclose btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Close</button>    
+                            <button type="submit" class="btn btn-success">Add Activity</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -261,7 +263,7 @@
                 backdrop.classList.add('modal-backdrop', 'fade', 'show');
                 document.body.appendChild(backdrop);
             });
-            var closeButton = modal.querySelector('.btn-close');
+            var closeButton = modal.querySelector('.btnclose');
             closeButton.addEventListener('click', function () {
                 modal.classList.remove('show');
                 modal.style.display = 'none'; 

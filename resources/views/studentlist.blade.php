@@ -79,12 +79,12 @@
                     <td>{{strtoupper($student->yearlevel)}}</td>
                     <td>{{strtoupper($student->collegedep)}}</td>
         
-                    <td class="d-flex gap-2 justify-content-center align-items-center">
-                        <button class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#editModal" data-studentId="{{ $student->id }}">Edit</button>
+                    <td class="d-flex gap-2 justify-content-center align-items-center deletedit">
+                        <button class="btn btn-primary d-flex align-items-center edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-studentId="{{ $student->id }}"><img src="images/edit.png" alt="Edit"></button>
                         <form class="deleteForm" action="{{ route('addstudentdestroy', $student->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger d-flex align-items-center" type="submit">Delete</button>
+                            <button class="btn btn-danger d-flex align-items-center" type="submit"><img src="images/delete.png" alt="Delete"></button>
                         </form>
                     </td>
                 </tr>      
@@ -105,41 +105,41 @@
     </footer>
 
     <!-- modal ni para pang edit sa student-->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" data-bs-backdrop="false">
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true" data-bs-backdrop="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit Student</h5>
-                    <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header d-flex justify-content-center">
+                    <h5 class="modal-title " id="editModalLabel">Edit Student</h5>
                 </div>
                 <div class="modal-body">
                     <!-- Form to edit student -->
                     <form id="editForm" action="{{ route('addstudentupdate', $student->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="mb-3">
+                        <div class=" input-grou mb-3">
                             <label for="idnumber" class="form-label">ID Number:</label>
-                            <input type="text" class="form-control" id="idnumber" name="idnumber" value="{{ $student->idnumber }}">
+                            <input type="text" class="form-control" id="idnumber" name="idnumber" value="{{ $student->idnumber }}" required>
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Name:</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ $student->name }}">
+                            <input type="text" class="form-control" id="name" name="name" value="{{ $student->name }}" required>
                         </div>
                         <div class="mb-3">
                             <label for="course" class="form-label">Course:</label>
-                            <input type="text" class="form-control" id="course" name="course" value="{{ $student->course }}">
+                            <input type="text" class="form-control" id="course" name="course" value="{{ $student->course }}" required>
                         </div>
                         <div class="mb-3">
                             <label for="yearlevel" class="form-label">Year Level:</label>
-                            <input type="text" class="form-control" id="yearlevel" name="yearlevel" value="{{ $student->yearlevel }}">
+                            <input type="text" class="form-control" id="yearlevel" name="yearlevel" value="{{ $student->yearlevel }}" required>
                         </div>
                         <div class="mb-3">
                             <label for="collegedep" class="form-label">Department:</label>
-                            <input type="text" class="form-control" id="collegedep" name="collegedep" value="{{ $student->collegedep }}">
+                            <input type="text" class="form-control" id="collegedep" name="collegedep" value="{{ $student->collegedep }}" required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn-danger btn" data-bs-dismiss="modal" aria-label="Close">Close</button>
                     <button type="submit" form="editForm" class="btn btn-success">Save changes</button>
                 </div>
             </div>
@@ -151,7 +151,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Student</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- Your form goes here -->
@@ -177,7 +176,10 @@
                             <label for="collegedep" class="form-label">Department</label>
                             <input type="text" name="collegedep" id="collegedep" class="form-control" placeholder=" ex: ccs" required>
                         </div>
-                        <button type="submit" class="btn btn-success">Add Student</button>
+                        <div class="modal-footer">
+                        <button type="button" class="btnclose btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                            <button type="submit" class="btn btn-success">Add Student</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -195,9 +197,6 @@
             button.addEventListener('click', function() {
                 var parentRow = this.closest('tr');
                 var studentId = this.getAttribute('data-studentId');
-                var backdrop = document.createElement('div');
-                backdrop.classList.add('modal-backdrop', 'fade', 'show');
-                document.body.appendChild(backdrop);
                 
                 document.getElementById('editForm').setAttribute('action', '/addstudent/' + studentId);
                 document.getElementById('name').value = parentRow.cells[1].textContent.trim();
@@ -236,7 +235,7 @@
                 backdrop.classList.add('modal-backdrop', 'fade', 'show');
                 document.body.appendChild(backdrop);
             });
-            var closeButton = modal.querySelector('.btn-close');
+            var closeButton = modal.querySelector('.btnclose');
             closeButton.addEventListener('click', function () {
                 modal.classList.remove('show');
                 modal.style.display = 'none'; 
