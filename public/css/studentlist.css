@@ -83,6 +83,9 @@ label {
 input {
     text-transform: uppercase;
 }
+#AddStudentModalLabel {
+    font-weight: 600;
+}
 #addStudentModal label {
     font-weight: 600;
 }

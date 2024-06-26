@@ -23,7 +23,7 @@
                         <a class="nav-link {{ Request::is('studentlist') ? 'active' : '' }}" href="{{route('studentlist')}}">Student List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('getTableData') ? 'active' : '' }}" href="{{route('getTableData')}}">Activity Attendance</a>
+                        <a class="nav-link {{ Request::is('getTableData') ? 'active' : '' }} aa" href="{{route('getTableData')}}">Activity Attendance</a>
                     </li>
                     <li class="nav-item ps-2">
                         <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}" id="logout" href="{{route('logout')}}">Logout</a>

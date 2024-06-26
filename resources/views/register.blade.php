@@ -6,11 +6,12 @@
     <title>Document</title>
 </head>
 <body>
+    <h2>Register</h2>
     <form action="{{route('register')}}" method="POST">
         @csrf
         <label for="idnumber">Id Number</label><br>
         <input type="text" id="idnumber" name="idnumber" required><br><br>
-        <label for="name">Name</label><br>
+        <label for="name">Full Name</label><br>
         <input type="text" id="name" name="name" required><br><br>
         <label for="email">Email</label><br>
         <input type="email" id="email" name="email" required><br><br>

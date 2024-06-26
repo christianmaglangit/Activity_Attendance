@@ -80,11 +80,11 @@
                     <td>{{strtoupper($student->collegedep)}}</td>
         
                     <td class="d-flex gap-2 justify-content-center align-items-center deletedit">
-                        <button class="btn btn-primary d-flex align-items-center edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-studentId="{{ $student->id }}"><img src="images/edit.png" alt="Edit"></button>
+                        <button class="btn btn-primary d-flex align-items-center edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-studentId="{{ $student->id }}"><img src="images/edit1.png" alt="Edit"></button>
                         <form class="deleteForm" action="{{ route('addstudentdestroy', $student->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger d-flex align-items-center" type="submit"><img src="images/delete.png" alt="Delete"></button>
+                            <button class="btn btn-danger d-flex align-items-center" type="submit"><img src="images/delete1.png" alt="Delete"></button>
                         </form>
                     </td>
                 </tr>      
@@ -146,11 +146,11 @@
         </div>
     </div>
     <!-- modal para sa add student -->
-    <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="AddStudentModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Student</h5>
+                <div class="modal-header d-flex justify-content-center">
+                    <h5 class="modal-title" id="AddStudentModalLabel">Add Student</h5>
                 </div>
                 <div class="modal-body">
                     <!-- Your form goes here -->
@@ -345,7 +345,7 @@
                 event.preventDefault(); 
                 Swal.fire({
                 title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                text: "You can't undo this!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",

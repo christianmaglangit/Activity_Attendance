@@ -93,7 +93,7 @@
                     icon: 'success',
                     title: 'Success!',
                     text: successMessage,
-                    timer: 3000,
+                    timer: 4000,
                     showConfirmButton: false,
                 });
             }
@@ -104,7 +104,7 @@
             const errorMessage = '{{ session('Not Found') }}';
             if (errorMessage) {
                 Swal.fire({
-                    icon: 'info',
+                    icon: 'warning',
                     title: 'Not Found!',
                     text: errorMessage,
                     timer: 5000,
