@@ -338,6 +338,20 @@
             }
         }
         checkAlreadyExistsMessage();
+
+        function checkUpdateStudentMessage() {
+            const UpdateStudentMessage = '{{ session('updatesuccess') }}';
+            if (UpdateStudentMessage) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: UpdateStudentMessage,
+                    timer: 2500,
+                    showConfirmButton: false,
+                });
+            }
+        }
+        checkUpdateStudentMessage();
         
         console.log("Event listener executed!");
         document.querySelectorAll('.deleteForm').forEach(form => {

@@ -290,19 +290,19 @@
             document.getElementById('rowCount').textContent = visibleRowCount;
         });
 
-        function checkSuccessMessage() {
-            const successMessage = '{{ session('success') }}';
-            if (successMessage) {
+        function checkAddActivityMessage() {
+            const AddActivityMessage = '{{ session('addactivitysuccess') }}';
+            if (AddActivityMessage) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Success!',
-                    text: successMessage,
+                    title: 'Success',
+                    text: AddActivityMessage,
                     timer: 2500,
                     showConfirmButton: false,
                 });
             }
         }
-        checkSuccessMessage();
+        checkAddActivityMessage();
         function checkWarningMessage() {
             const warningMessage = '{{ session('warning') }}';
             if (warningMessage) {

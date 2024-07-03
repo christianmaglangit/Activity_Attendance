@@ -68,7 +68,7 @@ class AddActivityController extends Controller
             ]);
             $modelClassName = Str::studly(str_replace(' ', '', $activityname));
             $activitynameWithoutSpaces = str_replace(' ', '', strtolower($activityname));
-            return redirect()->back()->with('success', "Activity Add Scuccess");
+            return redirect()->back()->with('addactivitysuccess', "Activity Add Scuccess");
         } else {
             return redirect()->back()->with('warning', 'Activity already exists!');
         }

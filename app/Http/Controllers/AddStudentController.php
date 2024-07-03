@@ -48,7 +48,7 @@ class AddStudentController extends Controller
         $student->yearlevel = $request->yearlevel;
         $student->collegedep = $request->collegedep;
         $student->save();   
-        return redirect()->back()->with('success', "Student update Success");
+        return redirect()->back()->with('updatesuccess', "Student update Success");
     }
 
     public function destroy(string $id)
