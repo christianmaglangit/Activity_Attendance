@@ -33,7 +33,7 @@
         </div>
     </nav>
     <h2 class="w-1oo d-flex justify-content-center"> List of Student</h2>
-    <div class="d-flex justify-content-around">
+    <div class="d-flex justify-content-around mb-3">
         <div class="selection d-flex gap-2">
             <label for="yearlevel" class="d-flex justify-conten-center align-items-center">Year level</label>
             <select class="form-control" style="font-size:15px; width:200px;" id="year" name="year">
@@ -44,7 +44,10 @@
                 <option value="4TH YEAR">4th year</option>
             </select>
         </div>
-        <div class="d-flex justify-conten-center align-items-center">Student Total Number : <span id="rowCount">0</span></div>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addStudentModal">
+            <img class="addstudent" src="images/addstudent.png" alt="Add Student">
+            Add Student
+        </button>
         <div class="searchengine d-flex justify-conten-center align-items-center" >
             <form id="searchForm " class="d-flex justify-conten-center align-items-center gap-2">
                 <label for="search">Search</label>
@@ -53,10 +56,7 @@
         </div>
     </div>
     <div class="w-100 d-flex justify-content-center align-items-center">
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addStudentModal">
-            <img class="addstudent" src="images/addstudent.png" alt="Add Student">
-            Add Student
-        </button>
+        <div class="d-flex justify-conten-center align-items-center">Student Total Number : <span id="rowCount">0</span></div>
     </div>
     <div class="tableclass">
         <table  id="studentTable" class="container table  table-bordered table-hover">
