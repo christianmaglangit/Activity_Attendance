@@ -73,7 +73,7 @@
                                 <option value="4TH YEAR">4th year</option>
                             </select>
                         </div>
-                        <h6 class="d-flex justify-content-center align-items-center">Student Total Number : <span id="rowCount">0</span></h6>
+                        <h6 class="d-flex justify-content-center align-items-center">Student Total Time In / Time Out : <span id="rowCount">0</span></h6>
                         <div class="searchengine d-flex justify-conten-center align-items-center" >
                             <form id="searchForm " class="d-flex justify-conten-center align-items-center gap-2">
                                 <label for="search">Search</label>
@@ -87,14 +87,14 @@
                     <table id="studentTable" class="container table table-bordered table-hover">
                         <thead class="tableHead">
                             <tr>
-                            <th class="bg-success text-light">ID Number</th>
-                            <th class="bg-success text-light">Name</th>
-                            <th class="bg-success text-light">Year Level</th>
-                            <th class="bg-success text-light">Course</th>
-                            <th class="bg-success text-light">Time In AM</th> 
-                            <th class="bg-success text-light">Time Out AM</th>
-                            <th class="bg-success text-light">Time In PM</th> 
-                            <th class="bg-success text-light">Time Out PM</th>   
+                            <th class="bg-success text-light text-center">ID Number</th>
+                            <th class="bg-success text-light text-center">Name</th>
+                            <th class="bg-success text-light text-center">Year Level</th>
+                            <th class="bg-success text-light text-center">Course</th>
+                            <th class="bg-success text-light text-center">Time In AM</th> 
+                            <th class="bg-success text-light text-center">Time Out AM</th>
+                            <th class="bg-success text-light text-center">Time In PM</th> 
+                            <th class="bg-success text-light text-center">Time Out PM</th>   
                             </tr>
                         </thead>
                         <tbody>
@@ -124,7 +124,6 @@
                     <h5 class="modal-title" id="AddActivityModalLabel">Add Activity</h5>
                 </div>
                 <div class="modal-body">
-                    <!-- Your form goes here -->
                     <form method="POST" action="{{ route('addactivityPost') }}">
                         @csrf
                         <div class="mb-3">
@@ -199,56 +198,55 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-        var searchInput = document.getElementById('searchInput');
-        var allRows = document.querySelectorAll('tbody tr');
+            var searchInput = document.getElementById('searchInput');
+            var allRows = document.querySelectorAll('tbody tr');
 
-        searchInput.addEventListener('input', function () {
-            filterTable();
-        });
+            searchInput.addEventListener('input', function () {
+                filterTable();
+            });
 
-        function filterTable() {
-            var input = searchInput.value.trim().toLowerCase();
-            var rows = document.querySelectorAll('tbody tr');
-            if (input === '') {
-                resetTable();
-                return;
-            }
-            rows.forEach(function (row) {
-                var idNumber = row.querySelector('td:first-child').textContent.trim().toLowerCase();
-                if (idNumber.startsWith(input)) {
-                    row.classList.add('matched');
-                } else {
-                    row.classList.remove('matched');
+            function filterTable() {
+                var input = searchInput.value.trim().toLowerCase();
+                var rows = document.querySelectorAll('tbody tr');
+                if (input === '') {
+                    resetTable();
+                    return;
                 }
-            });
-            sortTable();
-        }
-        function sortTable() {
-            var tbody = document.querySelector('tbody');
-            var rows = document.querySelectorAll('tbody tr.matched');
-            var sortedRows = Array.from(rows).sort((a, b) => {
-                var aID = a.querySelector('td:first-child').textContent.trim();
-                var bID = b.querySelector('td:first-child').textContent.trim();
-                return aID.localeCompare(bID);
-            });
+                rows.forEach(function (row) {
+                    var idNumber = row.querySelector('td:first-child').textContent.trim().toLowerCase();
+                    if (idNumber.startsWith(input)) {
+                        row.classList.add('matched');
+                    } else {
+                        row.classList.remove('matched');
+                    }
+                });
+                sortTable();
+            }
+            function sortTable() {
+                var tbody = document.querySelector('tbody');
+                var rows = document.querySelectorAll('tbody tr.matched');
+                var sortedRows = Array.from(rows).sort((a, b) => {
+                    var aID = a.querySelector('td:first-child').textContent.trim();
+                    var bID = b.querySelector('td:first-child').textContent.trim();
+                    return aID.localeCompare(bID);
+                });
 
-            tbody.innerHTML = '';
-            sortedRows.forEach(row => tbody.appendChild(row));
-        }
+                tbody.innerHTML = '';
+                sortedRows.forEach(row => tbody.appendChild(row));
+            }
 
-        function resetTable() {
-            var tbody = document.querySelector('tbody');
-            tbody.innerHTML = '';
-            allRows.forEach(row => tbody.appendChild(row));
-        }
-    });
+            function resetTable() {
+                var tbody = document.querySelector('tbody');
+                tbody.innerHTML = '';
+                allRows.forEach(row => tbody.appendChild(row));
+            }
+        });
 
         document.addEventListener("DOMContentLoaded", function() {
             function updateRowCount() {
                 var rowCount = document.querySelectorAll('#studentTable tbody tr').length;
                 document.getElementById('rowCount').innerText = rowCount;
             }
-            
             updateRowCount();
         });
 
@@ -274,24 +272,24 @@
         });
         
         document.getElementById('year').addEventListener('change', function() {
-        var yearLevel = this.value;
-        var rows = document.querySelectorAll('#studentTable tbody tr');
-        var visibleRowCount = 0;
-            rows.forEach(function(row) {
-                var yearCell = row.querySelector('td:nth-child(3)').textContent.trim(); // Adjust nth-child based on your column index
+            var yearLevel = this.value;
+            var rows = document.querySelectorAll('#studentTable tbody tr');
+            var visibleRowCount = 0;
+                rows.forEach(function(row) {
+                    var yearCell = row.querySelector('td:nth-child(3)').textContent.trim(); // Adjust nth-child based on your column index
 
-                if (yearLevel === 'all' || yearCell === yearLevel) {
-                    row.style.display = '';
-                    visibleRowCount++;
-                } else {
-                    row.style.display = 'none';
-                }
-            });
+                    if (yearLevel === 'all' || yearCell === yearLevel) {
+                        row.style.display = '';
+                        visibleRowCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
             document.getElementById('rowCount').textContent = visibleRowCount;
         });
 
         function checkAddActivityMessage() {
-            const AddActivityMessage = '{{ session('addactivitysuccess') }}';
+            const AddActivityMessage = '{{ session("addactivitysuccess") }}';
             if (AddActivityMessage) {
                 Swal.fire({
                     icon: 'success',
@@ -304,7 +302,7 @@
         }
         checkAddActivityMessage();
         function checkWarningMessage() {
-            const warningMessage = '{{ session('warning') }}';
+            const warningMessage = '{{ session("warning") }}';
             if (warningMessage) {
                 Swal.fire({
                     icon: 'warning',

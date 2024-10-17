@@ -27,11 +27,11 @@ Route::post('/', [loginController::class, 'loginPost'])->name('loginPost');
 //register
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'registerPost'])->name('register');
-//register end
+//end register
 
 //logout
 Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
-//logout end
+//end logout
 
 //for display student list
 Route::get('/studentlist', [AddStudentController::class, 'studentlist'])->name('studentlist')->middleware('auth');
@@ -54,9 +54,14 @@ Route::put('/addstudent/{id}', [AddStudentController::class, 'update'])->name('a
 Route::get('/addactivity', [AddActivityController::class, 'addactivity'])->name('addactivity');
 Route::post('/addactivity', [AddActivityController::class, 'addactivityPost'])->name('addactivityPost');
 //end add activity route
+
+//home
 Route::get('/home', [AddActivityController::class, 'showActivityFormHome'])->name('home')->middleware('auth');
 Route::post('/home', [AttendanceController::class, 'attendancePost'])->name('attendancePost');
+//end home
 
-//student penalty route
+//student penalty route 
+//abot kanusa pa ni ma human gi kapoy na ko
 Route::get('/studentpenalty', [StudentPenaltyController::class, 'studentpenalty'])->name('studentpenalty')->middleware('auth');
 Route::get('/studentpenalty', [StudentPenaltyController::class, 'getTableName'])->name('getTableName');
+//end student penalty

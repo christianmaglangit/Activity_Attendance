@@ -45,7 +45,7 @@
                 @endforeach
             </select>
             <label for="attendance" class="form-label">Attendance</label>
-            <input id="idInput" type="text" name="idinput"  placeholder="Enter ID Number">
+            <input id="idInput" type="text" name="idinput"  placeholder="Enter ID Number" required>
             <input type="hidden" id="realTime" name="realTime" value="">
             <button type="submit" class="btn btn-success w-50">Enter</button>
             <h1 id="realtime" class="mt-4"></h1>
@@ -87,7 +87,7 @@
     <!-- sweeralert script -->
     <script>
         function checkSuccessMessage() {
-            const successMessage = '{{ session('success') }}';
+            const successMessage = '{{ session("success") }}';
             if (successMessage) {
                 Swal.fire({
                     icon: 'success',
@@ -101,7 +101,7 @@
         checkSuccessMessage();
 
         function checkErrorMessage() {
-            const errorMessage = '{{ session('Not Found') }}';
+            const errorMessage = '{{ session("Not Found") }}';
             if (errorMessage) {
                 Swal.fire({
                     icon: 'warning',
@@ -115,7 +115,7 @@
         checkErrorMessage();
 
         function checkWarningMessage() {
-            const warningMessage = '{{ session('warning') }}';
+            const warningMessage = '{{ session("warning") }}';
             if (warningMessage) {
                 Swal.fire({
                     icon: 'warning',

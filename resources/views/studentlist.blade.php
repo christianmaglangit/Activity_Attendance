@@ -62,22 +62,22 @@
         <table  id="studentTable" class="container table  table-bordered table-hover">
             <thead class="tableHead">
                 <tr>
-                    <th class="bg-success text-light">ID Number</th>
-                    <th class="bg-success text-light">Name</th>
-                    <th class="bg-success text-light">Course</th>
-                    <th class="bg-success text-light">Year Level</th>
-                    <th class="bg-success text-light">College Department</th>
-                    <th class="bg-success text-light d-flex justify-content-center">Edit / Delete</th>
+                    <th class="bg-success text-light text-center">ID Number</th>
+                    <th class="bg-success text-light text-center">Name</th>
+                    <th class="bg-success text-light text-center">Course</th>
+                    <th class="bg-success text-light text-center">Year Level</th>
+                    <th class="bg-success text-light text-center">College Department</th>
+                    <th class="bg-success text-light text-center">Edit / Delete</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($studentlist as $student)
                 <tr>
-                    <td>{{strtoupper($student->idnumber)}}</td>
+                    <td class="text-center">{{strtoupper($student->idnumber)}}</td>
                     <td>{{strtoupper($student->name)}}</td>
-                    <td>{{strtoupper($student->course)}}</td>
-                    <td>{{strtoupper($student->yearlevel)}}</td>
-                    <td>{{strtoupper($student->collegedep)}}</td>
+                    <td class="text-center">{{strtoupper($student->course)}}</td>
+                    <td class="text-center">{{strtoupper($student->yearlevel)}}</td>
+                    <td class="text-center">{{strtoupper($student->collegedep)}}</td>
         
                     <td class="d-flex gap-2 justify-content-center align-items-center deletedit">
                         <button class="btn btn-primary d-flex align-items-center edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-studentId="{{ $student->id }}"><img src="images/edit1.png" alt="Edit"></button>
@@ -112,7 +112,6 @@
                     <h5 class="modal-title " id="editModalLabel">Edit Student</h5>
                 </div>
                 <div class="modal-body">
-                    <!-- Form to edit student -->
                     <form id="editForm" action="{{ route('addstudentupdate', $student->id) }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -153,16 +152,15 @@
                     <h5 class="modal-title" id="AddStudentModalLabel">Add Student</h5>
                 </div>
                 <div class="modal-body">
-                    <!-- Your form goes here -->
                     <form action="{{route('addstudent')}}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">Fullname</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="ex: John d. doe" required>
-                        </div>
-                        <div class="mb-3">
                             <label for="idnumber" class="form-label">ID - Number</label>
                             <input type="text" name="idnumber" id="idnumber" class="form-control" placeholder="ex: 00-0000 / 0000-0000 " required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Fullname</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="ex: Doe, John D. " required>
                         </div>
                         <div class="mb-3">
                             <label for="course" class="form-label">Course</label>
@@ -191,37 +189,36 @@
     <script>
         //modal
         document.addEventListener('DOMContentLoaded', function() {
-        console.log("Event listener executed!");
-        
-        document.querySelectorAll('.edit-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                var parentRow = this.closest('tr');
-                var studentId = this.getAttribute('data-studentId');
-                
-                document.getElementById('editForm').setAttribute('action', '/addstudent/' + studentId);
-                document.getElementById('name').value = parentRow.cells[1].textContent.trim();
-                document.getElementById('idnumber').value = parentRow.cells[0].textContent.trim();
-                document.getElementById('course').value = parentRow.cells[2].textContent.trim();
-                document.getElementById('yearlevel').value = parentRow.cells[3].textContent.trim();
-                document.getElementById('collegedep').value = parentRow.cells[4].textContent.trim();
+            console.log("Event listener executed!");
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    var parentRow = this.closest('tr');
+                    var studentId = this.getAttribute('data-studentId');
+                    
+                    document.getElementById('editForm').setAttribute('action', '/addstudent/' + studentId);
+                    document.getElementById('name').value = parentRow.cells[1].textContent.trim();
+                    document.getElementById('idnumber').value = parentRow.cells[0].textContent.trim();
+                    document.getElementById('course').value = parentRow.cells[2].textContent.trim();
+                    document.getElementById('yearlevel').value = parentRow.cells[3].textContent.trim();
+                    document.getElementById('collegedep').value = parentRow.cells[4].textContent.trim();
+                });
             });
-        });
 
-        document.querySelectorAll('.btn-close').forEach(button => {
-            button.addEventListener('click', function() {
+            document.querySelectorAll('.btn-close').forEach(button => {
+                button.addEventListener('click', function() {
+                    var backdrop = document.querySelector('.modal-backdrop');
+                    backdrop.parentNode.removeChild(backdrop);
+                });
+            });
+
+            document.getElementById('saveChangesBtn').addEventListener('click', function() {
+                var editModal = new bootstrap.Modal(document.getElementById('editModal'));
+                editModal.hide();
+                
                 var backdrop = document.querySelector('.modal-backdrop');
                 backdrop.parentNode.removeChild(backdrop);
             });
         });
-
-        document.getElementById('saveChangesBtn').addEventListener('click', function() {
-            var editModal = new bootstrap.Modal(document.getElementById('editModal'));
-            editModal.hide();
-            
-            var backdrop = document.querySelector('.modal-backdrop');
-            backdrop.parentNode.removeChild(backdrop);
-        });
-    });
 
         // add modal
         document.addEventListener('DOMContentLoaded', function () {
@@ -262,7 +259,6 @@
         });
         document.getElementById('rowCount').textContent = visibleRowCount;
         });
-
 
         //search
         document.addEventListener('DOMContentLoaded', function () {
@@ -312,7 +308,7 @@
 
         //sweet alert danhi
         function checkSuccessMessage() {
-            const successMessage = '{{ session('addsuccess') }}';
+            const successMessage = '{{ session("addsuccess") }}';
             if (successMessage) {
                 Swal.fire({
                     icon: 'success',
@@ -326,7 +322,7 @@
         checkSuccessMessage();
 
         function checkAlreadyExistsMessage() {
-            const AlreadyExistsMessage = '{{ session('alreadyexists') }}';
+            const AlreadyExistsMessage = '{{ session("alreadyexists") }}';
             if (AlreadyExistsMessage) {
                 Swal.fire({
                     icon: 'warning',
@@ -340,7 +336,7 @@
         checkAlreadyExistsMessage();
 
         function checkUpdateStudentMessage() {
-            const UpdateStudentMessage = '{{ session('updatesuccess') }}';
+            const UpdateStudentMessage = '{{ session("updatesuccess") }}';
             if (UpdateStudentMessage) {
                 Swal.fire({
                     icon: 'success',
