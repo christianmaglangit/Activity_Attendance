@@ -77,7 +77,7 @@
                     <td>{{strtoupper($student->name)}}</td>
                     <td class="text-center">{{strtoupper($student->course)}}</td>
                     <td class="text-center">{{strtoupper($student->yearlevel)}}</td>
-                    <td class="text-center">{{strtoupper($student->collegedep)}}</td>
+                    <!-- <td class="text-center">{{strtoupper($student->collegedep)}}</td>
         
                     <td class="d-flex gap-2 justify-content-center align-items-center deletedit">
                         <button class="btn btn-primary d-flex align-items-center edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-studentId="{{ $student->id }}"><img src="images/edit1.png" alt="Edit"></button>
@@ -86,7 +86,7 @@
                             @method('DELETE')
                             <button class="btn btn-danger d-flex align-items-center" type="submit"><img src="images/delete1.png" alt="Delete"></button>
                         </form>
-                    </td>
+                    </td> -->
                 </tr>      
                 @empty
                     <tr>
@@ -182,7 +182,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>  
 
     <script src="javascript/bootstrapjs/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

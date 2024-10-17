@@ -24,7 +24,6 @@ class StudentListAAController extends Controller
             if (AddActivity::where('activityname', $selectedName)->exists()) {
                 $tableData = DB::table($selectedName)
                                 ->select('idnumber', 'name', 'yearlevel', 'course' ,'TIMorning', 'TOMorning', 'TINoon' ,'TONoon')
-                                ->orderBy('yearlevel', 'asc')
                                 ->orderBy('name', 'asc')
                                 ->orderBy('idnumber', 'asc')
                                 ->get();
